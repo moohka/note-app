@@ -1,0 +1,54 @@
+@use "./variables" as *;
+
+.app-header {
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  text-align: center;
+
+  & .header-madewith {
+    display: inline-flex;
+    background-color: $font-color;
+    border-radius: $border-radius;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 2vh;
+
+    & .madewith-item {
+      width: 70px;
+      height: 70px;
+    }
+
+    & #Firebase-logo {
+      background: url(../visuals/Firebase.svg) no-repeat;
+    }
+
+    & #React-logo {
+      background: url(../visuals/React.svg) no-repeat;
+    }
+
+    & #Keep-logo {
+      background: url(../visuals/Keep.png) no-repeat;
+      background-size: contain;
+      height: 65px;
+    }
+
+    & #plus-icon {
+      background: url(../visuals/plus_round.svg) no-repeat;
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  & .header-intro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: large;
+
+    & span {
+      display: inline;
+      margin: 0 0.4rem;
+      white-space: nowrap;
+    }
+  }
+}

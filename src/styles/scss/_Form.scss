@@ -1,0 +1,56 @@
+@use "./variables" as *;
+
+.app-input {
+  display: flex;
+  flex-direction: column-reverse;
+  max-width: 600px;
+  border: 1px solid #c0402b;
+  border-radius: $border-radius;
+  padding: 3px;
+  margin: 0 auto;
+  margin-bottom: 30vh;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+
+  & .input-element {
+    background-color: transparent;
+    font-size: large;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    color: $font-color;
+
+    &#input-title {
+      display: none;
+      font-weight: 600;
+    }
+
+    // &#input-content {
+    //
+    // }
+  }
+  & .button-container {
+    display: none;
+    text-align: right;
+
+    & .form-button {
+      display: inline;
+      color: $font-color;
+      background-color: $background-color;
+      border-radius: $border-radius;
+      border: none;
+      font-size: medium;
+      padding: 0.5rem;
+      margin-right: 1rem;
+
+      &#add-button {
+        margin-right: 0.2rem;
+      }
+
+      &:hover {
+        background-color: $background-color-dark;
+      }
+    }
+  }
+}

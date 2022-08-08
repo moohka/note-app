@@ -11,30 +11,147 @@ body {
   background-color: #282c34;
   color: whitesmoke;
 }
+body::-webkit-scrollbar {
+  width: 16px;
+  background-color: #282c34;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #c0402b;
+  border-radius: 30px;
+  border: 3px solid #282c34;
+}
 
 code {
   font-family: monospace;
 }
 
-.app .app-header .madewith {
+.app-display {
+  display: grid;
+  grid-template-columns: minmax(auto, 20vw);
+  grid-template-rows: 150px;
+  gap: 1rem;
+  margin: 2rem;
+}
+.app-display .display-item {
+  padding: 0.8rem;
+  border: 1px solid #c0402b;
+  border-radius: 10px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: hidden;
+}
+.app-display .display-item.edit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.app-display .display-item .item-h {
+  font-weight: 600;
+  margin-bottom: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.app-display .display-item .item-p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.app-input {
+  display: flex;
+  flex-direction: column-reverse;
+  max-width: 600px;
+  border: 1px solid #c0402b;
+  border-radius: 10px;
+  padding: 3px;
+  margin: 0 auto;
+  margin-bottom: 30vh;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
+  overflow: hidden;
+}
+.app-input .input-element {
+  background-color: transparent;
+  font-size: large;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  color: whitesmoke;
+}
+.app-input .input-element#input-title {
+  display: none;
+  font-weight: 600;
+}
+.app-input .button-container {
+  display: none;
+  text-align: right;
+}
+.app-input .button-container .form-button {
+  display: inline;
+  color: whitesmoke;
+  background-color: #282c34;
+  border-radius: 10px;
+  border: none;
+  font-size: medium;
+  padding: 0.5rem;
+  margin-right: 1rem;
+}
+.app-input .button-container .form-button#add-button {
+  margin-right: 0.2rem;
+}
+.app-input .button-container .form-button:hover {
+  background-color: #24272e;
+}
+
+.app-header {
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  text-align: center;
+}
+.app-header .header-madewith {
   display: inline-flex;
   background-color: whitesmoke;
-  margin: 0 auto;
+  border-radius: 10px;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 2vh;
 }
-.app .app-header .madewith .madewith-item {
-  width: 100px;
-  height: 100px;
-  color: black;
+.app-header .header-madewith .madewith-item {
+  width: 70px;
+  height: 70px;
 }
-.app .app-header .madewith #firebase-logo {
-  background: url(../visuals/firebase.svg);
+.app-header .header-madewith #Firebase-logo {
+  background: url(../visuals/Firebase.svg) no-repeat;
 }
-.app .app-header .madewith #react-logo {
-  background: url(../visuals/react.svg) no-repeat center bottom;
+.app-header .header-madewith #React-logo {
+  background: url(../visuals/React.svg) no-repeat;
 }
-.app .app-header .title {
-  font-size: 40px;
+.app-header .header-madewith #Keep-logo {
+  background: url(../visuals/Keep.png) no-repeat;
+  background-size: contain;
+  height: 65px;
 }
-.app .app-body {
-  display: grid;
+.app-header .header-madewith #plus-icon {
+  background: url(../visuals/plus_round.svg) no-repeat;
+  width: 50px;
+  height: 50px;
+}
+.app-header .header-intro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: large;
+}
+.app-header .header-intro span {
+  display: inline;
+  margin: 0 0.4rem;
+  white-space: nowrap;
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,44 @@
+@use "./variables" as *;
+
+.app-display {
+  display: grid;
+  grid-template-columns: minmax(auto, 20vw);
+  grid-template-rows: 150px;
+  gap: 1rem;
+  margin: 2rem;
+
+  & .display-item {
+    padding: 0.8rem;
+    border: 1px solid #c0402b;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    user-select: none;
+    overflow: hidden;
+
+    &.edit {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    & .item-h {
+      font-weight: 600;
+      margin-bottom: 10px;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    & .item-p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
+  }
+}
