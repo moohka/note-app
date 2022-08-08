@@ -8,7 +8,7 @@
   border-radius: $border-radius;
   padding: 3px;
   margin: 0 auto;
-  margin-bottom: 30vh;
+  margin-bottom: 6vh;
   box-shadow: $box-shadow;
   overflow: hidden;
 
@@ -26,10 +26,13 @@
       font-weight: 600;
     }
 
-    // &#input-content {
-    //
-    // }
+    &#input-content {
+      font-family: sans-serif;
+      resize: none;
+      overflow: hidden;
+    }
   }
+
   & .button-container {
     display: none;
     text-align: right;
@@ -41,7 +44,7 @@
       border-radius: $border-radius;
       border: none;
       font-size: medium;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       margin-right: 1rem;
 
       &#add-button {

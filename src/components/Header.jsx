@@ -12,7 +12,7 @@ function Header() {
       <div className="header-intro">
         <span>Built with React.</span>
         <span>Stored in Firebase.</span>
-        <span>Adapted from Keep.</span>
+        <span>Designed by Keep.</span>
       </div>
     </header>
   );
