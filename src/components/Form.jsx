@@ -1,16 +1,17 @@
-import { useState, useEffect, useRef } from "react";
-import { db } from "../firebase-config";
-import { collection, addDocs } from "firebase/firestore";
+import { useState, useEffect, useRef, useContext } from "react";
+import { notesCollection } from "../firebase-config";
+import { addDocs, addDoc } from "firebase/firestore";
+import { AppContext } from "./App";
 
 function Form() {
   //Form variables
-  const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState();
   const formRef = useRef();
   const titleRef = useRef();
   const contentRef = useRef();
   const buttonRef = useRef();
 
-  //form open/close
+  //form open & close
   useEffect(() => {
     if (focused) {
       titleRef.current.style.display = "block";
@@ -33,19 +34,23 @@ function Form() {
     });
   }, []);
 
-  function addNote() {
-    console.log("add to database");
-  }
-
+  //open Form
   function openForm() {
     setFocused(true);
   }
 
+  //addDoc
+  async function addNote(titleInput, contentInput) {
+    await addDoc(notesCollection, { title: titleInput, content: contentInput });
+  }
+
+  //close Form
+  const [trigger, setTrigger] = useContext(AppContext);
+
   function closeForm() {
     if (titleRef.current.value !== "" || contentRef.current.value !== "") {
-      addNote();
-    } else {
-      console.log("nothing");
+      addNote(titleRef.current.value, contentRef.current.value);
+      // setTrigger(!trigger);
     }
 
     titleRef.current.value = "";
@@ -54,6 +59,7 @@ function Form() {
 
     setFocused(false);
   }
+
   //textarea auto-grow
   function autoGrow() {
     contentRef.current.style.height = "auto";

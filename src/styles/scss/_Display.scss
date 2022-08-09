@@ -2,19 +2,20 @@
 
 .app-display {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 18vw));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 20vw));
   grid-template-rows: auto;
 
   gap: 1rem;
   margin: 2rem;
 
-  & .display-item {
+  & .display-main {
     position: relative;
     border: 1px solid #c0402b;
     border-radius: $border-radius;
     box-shadow: $box-shadow;
     user-select: none;
     overflow: hidden;
+    // padding-bottom: 40px;
     transition: all 0.3s ease;
 
     &.edit {
@@ -27,6 +28,7 @@
     & .item-h {
       padding: 0.6rem;
       font-weight: 600;
+      pointer-events: none;
 
       overflow: hidden;
       white-space: nowrap;
@@ -34,10 +36,11 @@
     }
 
     & .item-p {
-      padding: 0.4rem 0.6rem;
-      padding-top: 0;
+      padding: 0 0.6rem;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-bottom: 0.6rem;
+      pointer-events: none;
 
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -45,27 +48,28 @@
       white-space: normal;
     }
 
-    //delete & close button
-
-    & #delete-icon {
-      border-radius: $border-radius;
-      padding: 0.3rem 0.6rem;
-      margin-left: 0.3rem;
-
-      &:hover {
-        background-color: $background-color-dark;
-      }
-    }
-
     &:hover {
       transform: translateY(-5px);
     }
 
+    //delete & close button
     & .button-container {
-      display: flex;
-      // display: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+
+      display: none;
+      // display: flex;
       justify-content: space-between;
       align-items: center;
+
+      & #delete-icon {
+        @include button;
+        padding: 0.3rem 0.6rem;
+        margin-left: 0.3rem;
+      }
 
       & .close-button {
         @include button;
