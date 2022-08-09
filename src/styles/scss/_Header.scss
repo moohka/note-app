@@ -1,54 +1,23 @@
 @use "./variables" as *;
 
 .app-header {
-  margin-top: 3vh;
-  margin-bottom: 6vh;
-  text-align: center;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  top: 0;
 
-  & .header-madewith {
-    display: inline-flex;
-    background-color: $font-color;
-    border-radius: $border-radius;
-    align-items: center;
-    padding: 5px;
-    margin-bottom: 3vh;
+  background-color: $background-color;
+  padding: 15px 0 10px 5vw;
+  z-index: 99;
+  border-bottom: 1px solid $main-color;
 
-    & .madewith-item {
-      width: 70px;
-      height: 70px;
-    }
-
-    & #Firebase-logo {
-      background: url(../visuals/Firebase.svg) no-repeat;
-    }
-
-    & #React-logo {
-      background: url(../visuals/React.svg) no-repeat;
-    }
-
-    & #Keep-logo {
-      background: url(../visuals/Keep.png) no-repeat;
-      background-size: contain;
-      height: 65px;
-    }
-
-    & #plus-icon {
-      background: url(../visuals/plus_round.svg) no-repeat;
-      width: 50px;
-      height: 50px;
-    }
+  & .keep-logo {
+    height: 70px;
+    width: 60px;
+    background: url(../visuals/Keep_logo.svg) no-repeat;
   }
 
-  & .header-intro {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: large;
-
-    & span {
-      display: inline;
-      margin: 0 0.4rem;
-      white-space: nowrap;
-    }
+  & .keep-text {
+    font-size: x-large;
   }
 }

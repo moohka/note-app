@@ -7,8 +7,7 @@
   border: 1px solid #c0402b;
   border-radius: $border-radius;
   padding: 3px;
-  margin: 0 auto;
-  margin-bottom: 6vh;
+  margin: 6vh auto;
   box-shadow: $box-shadow;
   overflow: hidden;
 
@@ -37,23 +36,9 @@
     display: none;
     text-align: right;
 
-    & .form-button {
-      display: inline;
-      color: $font-color;
-      background-color: $background-color;
-      border-radius: $border-radius;
-      border: none;
-      font-size: medium;
-      padding: 0.5rem 1rem;
-      margin-right: 1rem;
-
-      &#add-button {
-        margin-right: 0.2rem;
-      }
-
-      &:hover {
-        background-color: $background-color-dark;
-      }
+    & .close-button {
+      @include button;
+      margin-right: 0.5rem;
     }
   }
 }

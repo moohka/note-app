@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { db } from "../firebase-config";
+import { collection, addDocs } from "firebase/firestore";
 
 function Form() {
   //Form variables
@@ -69,7 +71,7 @@ function Form() {
   return (
     <form className="app-input" ref={formRef}>
       <div className="button-container" ref={buttonRef}>
-        <button type="button" className="form-button" onClick={closeForm}>
+        <button type="button" className="close-button" onClick={closeForm}>
           Close
         </button>
       </div>

@@ -1,25 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "../firebase-config";
+import { collection, getDocs, updateDocs } from "firebase/firestore";
 
 function Display() {
-  //edit a note
-  const [edit, setEdit] = useState("");
+  //getDocs
+  const [notes, setNotes] = useState([]);
+  const notesCollection = collection(db, "notes");
 
-  //fetch data
-  let data = [
-    {
-      title: "First Note dff asdf sadf sadf asdf",
-      content:
-        "asfefasdf askdjfl; asdf dfdfdfd jiasmdflsadfas dfhasklasdfa asdf asdffdgsd fhuasdfh aslkjdfhklasudhf lkh  asdhfkuashdf lkajhsdflk jashdflk uh; aisj df;lajis df;lja sdl;ifj a;lisdf j;lsadjk",
-    },
-  ];
+  useEffect(() => {
+    (async function () {
+      try {
+        const data = await getDocs(notesCollection);
+        setNotes(
+          data.docs.map((doc) => {
+            return { ...doc.data(), id: doc.id };
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  //updateDocs
 
   return (
     <div className="app-display">
-      {data.map((note) => {
+      {notes.map((note) => {
         return (
-          <div className={`display-item  ${edit}`} key={note.title}>
+          <div className={`display-item`} key={note.id}>
             <p className="item-h">{`${note.title}`}</p>
             <p className="item-p">{`${note.content}`}</p>
+
+            <div className="button-container">
+              <i className="fi fi-rr-trash" id="delete-icon"></i>
+              <button className="close-button">Close</button>
+            </div>
           </div>
         );
       })}
