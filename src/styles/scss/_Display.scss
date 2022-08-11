@@ -2,21 +2,32 @@
 
 .app-display {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 20vw));
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 21vw));
   grid-template-rows: auto;
-
   gap: 1rem;
-  margin: 2rem;
+  margin: 3rem;
+
+  // .overlay {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   z-index: 98;
+  //   width: 100vw;
+  //   height: 100vh;
+  //   background-color: black;
+  //   opacity: 0.3;
+  // }
 
   & .display-main {
-    position: relative;
     border: 1px solid #c0402b;
     border-radius: $border-radius;
+    background-color: $background-color;
     box-shadow: $box-shadow;
     user-select: none;
     overflow: hidden;
-    // padding-bottom: 40px;
     transition: all 0.3s ease;
+    transition-property: transform;
 
     &.edit {
       position: fixed;
@@ -52,7 +63,23 @@
       transform: translateY(-5px);
     }
 
-    //delete & close button
+    &.popup {
+      /**************************************************/
+      position: absolute;
+      z-index: 99;
+      padding-bottom: 40px;
+      top: 50%;
+      left: 50%;
+      min-width: 200px;
+      max-width: 400px;
+      transform: translate(-50%, -50%) scale(1.5);
+      /**************************************************/
+
+      & .button-container {
+        display: flex;
+      }
+    }
+
     & .button-container {
       position: absolute;
       bottom: 0;
@@ -61,7 +88,6 @@
       height: 40px;
 
       display: none;
-      // display: flex;
       justify-content: space-between;
       align-items: center;
 

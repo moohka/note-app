@@ -2,7 +2,8 @@ function Header() {
   return (
     <header className="app-header">
       <div className="keep-logo"></div>
-      <span className="keep-text">Keep</span>
+      <span className="keep-name">Keep</span>
+      <p className="keep-p">Recreated Google Keep to practice Firebase</p>
     </header>
   );
 }

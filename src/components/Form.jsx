@@ -4,12 +4,15 @@ import { addDocs, addDoc } from "firebase/firestore";
 import { AppContext } from "./App";
 
 function Form() {
-  //Form variables
   const [focused, setFocused] = useState();
   const formRef = useRef();
   const titleRef = useRef();
   const contentRef = useRef();
   const buttonRef = useRef();
+
+  useEffect(() => {
+    formRef.current.addEventListener("click", openForm);
+  }, []);
 
   //form open & close
   useEffect(() => {
@@ -22,26 +25,20 @@ function Form() {
     }
   }, [focused]);
 
-  //form focus
-  useEffect(() => {
-    formRef.current.addEventListener("click", openForm);
+  //addDoc
+  async function addNote(titleInput, contentInput) {
+    await addDoc(notesCollection, { title: titleInput, content: contentInput });
+  }
 
+  //open Form
+  function openForm() {
     document.addEventListener("click", (e) => {
       var isClickInsideElement = formRef.current.contains(e.target);
       if (!isClickInsideElement) {
         closeForm();
       }
     });
-  }, []);
-
-  //open Form
-  function openForm() {
     setFocused(true);
-  }
-
-  //addDoc
-  async function addNote(titleInput, contentInput) {
-    await addDoc(notesCollection, { title: titleInput, content: contentInput });
   }
 
   //close Form
@@ -57,6 +54,7 @@ function Form() {
     contentRef.current.value = "";
     contentRef.current.style.height = "auto";
 
+    document.removeEventListener("click", () => {});
     setFocused(false);
   }
 

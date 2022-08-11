@@ -28,15 +28,16 @@ code {
 
 .app-display {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 20vw));
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 21vw));
   grid-template-rows: auto;
   gap: 1rem;
-  margin: 2rem;
+  margin: 3rem;
 }
 .app-display .display-main {
-  position: relative;
   border: 1px solid #c0402b;
   border-radius: 10px;
+  background-color: #282c34;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -44,6 +45,7 @@ code {
           user-select: none;
   overflow: hidden;
   transition: all 0.3s ease;
+  transition-property: transform;
 }
 .app-display .display-main.edit {
   position: fixed;
@@ -72,6 +74,21 @@ code {
 }
 .app-display .display-main:hover {
   transform: translateY(-5px);
+}
+.app-display .display-main.popup {
+  /**************************************************/
+  position: absolute;
+  z-index: 99;
+  padding-bottom: 40px;
+  top: 50%;
+  left: 50%;
+  min-width: 200px;
+  max-width: 400px;
+  transform: translate(-50%, -50%) scale(1.5);
+  /**************************************************/
+}
+.app-display .display-main.popup .button-container {
+  display: flex;
 }
 .app-display .display-main .button-container {
   position: absolute;
@@ -167,14 +184,19 @@ code {
   top: 0;
   background-color: #282c34;
   padding: 15px 0 10px 5vw;
-  z-index: 99;
+  z-index: 1;
   border-bottom: 1px solid #c0402b;
 }
 .app-header .keep-logo {
-  height: 70px;
-  width: 60px;
+  height: 55px;
+  width: 55px;
   background: url(../visuals/Keep_logo.svg) no-repeat;
 }
-.app-header .keep-text {
-  font-size: x-large;
+.app-header .keep-name {
+  font-size: large;
+}
+.app-header .keep-p {
+  display: block;
+  color: #c0402b;
+  font-size: small;
 }/*# sourceMappingURL=style.css.map */

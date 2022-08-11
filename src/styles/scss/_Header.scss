@@ -8,16 +8,22 @@
 
   background-color: $background-color;
   padding: 15px 0 10px 5vw;
-  z-index: 99;
+  z-index: 1;
   border-bottom: 1px solid $main-color;
 
   & .keep-logo {
-    height: 70px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     background: url(../visuals/Keep_logo.svg) no-repeat;
   }
 
-  & .keep-text {
-    font-size: x-large;
+  & .keep-name {
+    font-size: large;
+  }
+
+  & .keep-p {
+    display: block;
+    color: $main-color;
+    font-size: small;
   }
 }
