@@ -13,12 +13,12 @@
 
   & .input-element {
     background-color: transparent;
-    font-size: large;
+    color: $font-color;
     border: none;
     outline: none;
+    font-size: large;
     width: 100%;
     padding: 0.6rem 1rem;
-    color: $font-color;
 
     &#input-title {
       display: none;

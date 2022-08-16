@@ -6,7 +6,6 @@
 
 body {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-family: "Product Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
@@ -34,61 +33,23 @@ code {
   gap: 1rem;
   margin: 3rem;
 }
+.app-display .test {
+  min-height: 200vh;
+}
 .app-display .display-main {
   border: 1px solid #c0402b;
   border-radius: 10px;
   background-color: #282c34;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   overflow: hidden;
-  transition: all 0.3s ease;
-  transition-property: transform;
-}
-.app-display .display-main.edit {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.app-display .display-main .item-h {
-  padding: 0.6rem;
-  font-weight: 600;
-  pointer-events: none;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.app-display .display-main .item-p {
-  padding: 0 0.6rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 0.6rem;
-  pointer-events: none;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  white-space: normal;
+  padding: 0.7rem 1rem;
+  transition: none;
+  /*edit input------------------------*/
+  /**************************************************/
+  /**************************************************/
 }
 .app-display .display-main:hover {
   transform: translateY(-5px);
-}
-.app-display .display-main.popup {
-  /**************************************************/
-  position: absolute;
-  z-index: 99;
-  padding-bottom: 40px;
-  top: 50%;
-  left: 50%;
-  min-width: 200px;
-  max-width: 400px;
-  transform: translate(-50%, -50%) scale(1.5);
-  /**************************************************/
-}
-.app-display .display-main.popup .button-container {
-  display: flex;
 }
 .app-display .display-main .button-container {
   position: absolute;
@@ -106,7 +67,7 @@ code {
   background-color: #282c34;
   border-radius: 10px;
   border: none;
-  font-size: medium;
+  font-size: small;
   padding: 0.5rem 1rem;
   padding: 0.3rem 0.6rem;
   margin-left: 0.3rem;
@@ -120,13 +81,79 @@ code {
   background-color: #282c34;
   border-radius: 10px;
   border: none;
-  font-size: medium;
+  font-size: small;
   padding: 0.5rem 1rem;
   padding: 0.3rem 0.6rem;
   margin-right: 0.3rem;
 }
 .app-display .display-main .button-container .close-button:hover {
   background-color: #24272e;
+}
+.app-display .display-main .display-input {
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: medium;
+  pointer-events: none;
+}
+.app-display .display-main .display-input#item-h {
+  font-weight: 600;
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  margin-bottom: 0.3rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.app-display .display-main .display-input#item-p {
+  margin: 0 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  resize: none;
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  resize: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+.app-display .display-main.popup {
+  position: fixed;
+  z-index: 98;
+  padding-bottom: 40px;
+  top: 50%;
+  left: 50%;
+  min-width: 250px;
+  max-width: 500px;
+  transform: translate(-50%, -50%) scale(1.5);
+  transition: none;
+  pointer-events: none;
+}
+.app-display .display-main.popup .button-container {
+  display: flex;
+}
+.app-display .display-main.popup .display-input#item-h {
+  pointer-events: auto;
+}
+.app-display .display-main.popup .display-input#item-p {
+  pointer-events: auto;
+  font-family: sans-serif;
+  resize: none;
+  white-space: pre-wrap;
+}
+.app-display .overlay.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 97;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 255, 0.5);
 }
 
 .app-input {
@@ -142,12 +169,12 @@ code {
 }
 .app-input .input-element {
   background-color: transparent;
-  font-size: large;
+  color: whitesmoke;
   border: none;
   outline: none;
+  font-size: large;
   width: 100%;
   padding: 0.6rem 1rem;
-  color: whitesmoke;
 }
 .app-input .input-element#input-title {
   display: none;
@@ -168,7 +195,7 @@ code {
   background-color: #282c34;
   border-radius: 10px;
   border: none;
-  font-size: medium;
+  font-size: small;
   padding: 0.5rem 1rem;
   margin-right: 0.5rem;
 }
@@ -182,21 +209,24 @@ code {
   display: flex;
   align-items: center;
   top: 0;
+  width: 100%;
   background-color: #282c34;
-  padding: 15px 0 10px 5vw;
+  padding: 15px 5vw 10px 5vw;
   z-index: 1;
   border-bottom: 1px solid #c0402b;
+  z-index: 99;
 }
 .app-header .keep-logo {
-  height: 55px;
-  width: 55px;
+  min-height: 55px;
+  min-width: 55px;
   background: url(../visuals/Keep_logo.svg) no-repeat;
 }
 .app-header .keep-name {
   font-size: large;
 }
 .app-header .keep-p {
-  display: block;
+  align-self: center;
+  margin-left: auto;
   color: #c0402b;
   font-size: small;
 }/*# sourceMappingURL=style.css.map */

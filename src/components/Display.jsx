@@ -6,8 +6,9 @@ import { AppContext } from "./App";
 function Display() {
   const [notes, setNotes] = useState([]);
   const [trigger, setTrigger] = useContext(AppContext);
+  const contentRef = useRef();
 
-  //getDocs
+  //2getDocs
   useEffect(() => {
     // (async function () {
     //   try {
@@ -23,18 +24,50 @@ function Display() {
     // })();
   }, []);
 
-  //updateDoc
+  //3updateDoc
   async function updateNote(id) {
     const noteDoc = doc(db, "notes", id);
     await updateDoc(noteDoc);
     // setTrigger(!trigger);
   }
 
-  //deleteDoc
+  //4deleteDoc
   async function deleteNote(id) {
     const noteDoc = doc(db, "notes", id);
     await deleteDoc(noteDoc);
     // setTrigger(!trigger);
+  }
+
+  //open popup
+  function openNote(e) {
+    e.target.classList.add("popup");
+    //open overlay
+    e.target.parentNode.classList.add("popup");
+    //click anywhere to close
+    document.addEventListener("click", (e) => {
+      var isClickInsideElement = e.target.contains(e.target.childNodes[0]);
+      if (!isClickInsideElement) {
+        closeNote(e);
+      }
+    });
+  }
+  //close popup
+  function closeNote(e) {
+    //parents of buttons
+    const parent = e.target.parentNode;
+    const div = parent.parentNode;
+    div.classList.remove("popup");
+  }
+
+  function overlayCloseNote(e) {
+    const child = e.target.childNodes[0];
+    child.classList.remove("popup");
+  }
+
+  //textarea auto-grow
+  function autoGrow() {
+    contentRef.current.style.height = "auto";
+    contentRef.current.style.height = contentRef.current.scrollHeight + "px";
   }
 
   //TEST DATA
@@ -42,9 +75,9 @@ function Display() {
     { id: 1, title: "abc", content: "content" },
     {
       id: 2,
-      title: "efjeifj",
+      title: "fjeifj",
       content:
-        "aisdjlskdfj dlkjas sdfjasidfj sadfj asldfj ;asjidf;lasidfj ;lasdijf ;laisjhfohiuwerf  dkf sadfs dfhsadfuh sdf dfj dfjd sahfsh  ",
+        "aisdjlskdfj dlkjas sdfjasidfj sadfj asldfj ;asas dfjhaskj fhksajdf aksdfhklsa jdfhkajs dfklas dfjakslfdhauslkdfh lkjjidf;lasidfj ;lasdijf ;laisjhfohiuwerf  dkf sadfs dfhsadfuh sdf dfj dfjd sahfsh  END",
     },
     { id: 3, title: "abc", content: "content" },
     { id: 4, title: "abc", content: "content" },
@@ -53,56 +86,68 @@ function Display() {
     { id: 7, title: "abc", content: "content" },
   ];
 
-  //open popup
-
-  function openNote(e) {
-    e.target.classList.add("popup");
-  }
-
-  function closeNote(e) {
-    const parent = e.target.parentNode;
-    const div = parent.parentNode;
-
-    console.log(div);
-    div.classList.remove("popup");
-  }
-
   return (
     <div className="app-display">
+      {/*each note items*/}
       {testNotes.map((note) => {
         return (
-          <div className="overlay" key={note.id}>
+          <div className="just-a-placeholder" key={note.id}>
             <div
-              className={`display-main`}
-              id={note.id}
+              className="overlay"
               onClick={(e) => {
-                openNote(e);
+                overlayCloseNote(e);
               }}
             >
-              <p className="item-h">{`${note.title}`}</p>
-              <p className="item-p">{`${note.content}`}</p>
+              <div
+                className={`display-main`}
+                id={note.id}
+                onClick={(e) => {
+                  contentRef.current.style.height =
+                    contentRef.current.scrollHeight + "px";
+                  openNote(e);
+                }}
+              >
+                <input
+                  className="display-input"
+                  id="item-h"
+                  defaultValue={`${note.title}`}
+                ></input>
 
-              <div className="button-container">
-                <i
-                  className="fi fi-rr-trash"
-                  id="delete-icon"
-                  onClick={() => {
-                    //deleteNote();
-                  }}
-                ></i>
-                <button
-                  className="close-button"
-                  onClick={(e) => {
-                    closeNote(e);
-                  }}
-                >
-                  Close
-                </button>
+                <textarea
+                  className="display-input"
+                  id="item-p"
+                  rows="1"
+                  ref={contentRef}
+                  onInput={autoGrow}
+                  defaultValue={`${note.content}`}
+                ></textarea>
+
+                <div className="button-container">
+                  <i
+                    className="fi fi-rr-trash"
+                    id="delete-icon"
+                    onClick={(e) => {
+                      closeNote(e);
+                      //deleteNote();
+                    }}
+                  ></i>
+
+                  <button
+                    className="close-button"
+                    onClick={(e) => {
+                      closeNote(e);
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         );
       })}
+
+      <div className="test"></div>
     </div>
   );
 }

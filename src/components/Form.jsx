@@ -14,6 +14,11 @@ function Form() {
     formRef.current.addEventListener("click", openForm);
   }, []);
 
+  //1addDoc
+  const addNote = async (titleInput, contentInput) => {
+    await addDoc(notesCollection, { title: titleInput, content: contentInput });
+  };
+
   //form open & close
   useEffect(() => {
     if (focused) {
@@ -24,11 +29,6 @@ function Form() {
       buttonRef.current.style.display = "none";
     }
   }, [focused]);
-
-  //addDoc
-  async function addNote(titleInput, contentInput) {
-    await addDoc(notesCollection, { title: titleInput, content: contentInput });
-  }
 
   //open Form
   function openForm() {

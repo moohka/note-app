@@ -5,15 +5,16 @@
   display: flex;
   align-items: center;
   top: 0;
-
+  width: 100%;
   background-color: $background-color;
-  padding: 15px 0 10px 5vw;
+  padding: 15px 5vw 10px 5vw;
   z-index: 1;
   border-bottom: 1px solid $main-color;
+  z-index: 99;
 
   & .keep-logo {
-    height: 55px;
-    width: 55px;
+    min-height: 55px;
+    min-width: 55px;
     background: url(../visuals/Keep_logo.svg) no-repeat;
   }
 
@@ -22,7 +23,8 @@
   }
 
   & .keep-p {
-    display: block;
+    align-self: center;
+    margin-left: auto;
     color: $main-color;
     font-size: small;
   }
