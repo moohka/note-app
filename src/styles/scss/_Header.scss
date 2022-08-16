@@ -1,4 +1,4 @@
-@use "./variables" as *;
+@use "./_variables" as *;
 
 .app-header {
   position: sticky;
@@ -7,25 +7,36 @@
   top: 0;
   width: 100%;
   background-color: $background-color;
-  padding: 15px 5vw 10px 5vw;
+  padding: 15px 2vw 10px 5vw;
   z-index: 1;
   border-bottom: 1px solid $main-color;
   z-index: 99;
 
-  & .keep-logo {
-    min-height: 55px;
-    min-width: 55px;
-    background: url(../visuals/Keep_logo.svg) no-repeat;
+  & svg {
+    width: 55px;
+    height: 55px;
   }
 
-  & .keep-name {
+  & .keep-h {
     font-size: large;
   }
 
-  & .keep-p {
-    align-self: center;
+  & .built-with {
+    display: flex;
+    align-items: center;
     margin-left: auto;
-    color: $main-color;
-    font-size: small;
+    border-radius: $border-radius;
+    padding: 0.3rem 0.5rem;
+    background-color: $font-color;
+
+    & svg {
+      width: 50px;
+      height: 50px;
+
+      &:nth-child(even) {
+        width: 35px;
+        height: 35px;
+      }
+    }
   }
 }

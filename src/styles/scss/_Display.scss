@@ -1,13 +1,15 @@
-@use "./variables" as *;
+@use "./_variables" as *;
 
 .app-display {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 21vw));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto;
+  width: 90vw;
+  margin: auto;
   gap: 1rem;
-  margin: 3rem;
 
+  //test
   & .test {
     min-height: 200vh;
   }

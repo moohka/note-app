@@ -1,15 +1,17 @@
-@use "./variables" as *;
+@use "./_variables" as *;
 
 .app-input {
   display: flex;
   flex-direction: column-reverse;
+  width: 90vw;
   max-width: 600px;
   border: 1px solid #c0402b;
   border-radius: $border-radius;
   padding: 3px;
-  margin: 4vh auto;
   box-shadow: $box-shadow;
   overflow: hidden;
+  margin: 4vh auto;
+  margin-bottom: 6vh;
 
   & .input-element {
     background-color: transparent;

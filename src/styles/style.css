@@ -28,10 +28,11 @@ code {
 .app-display {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 21vw));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto;
+  width: 90vw;
+  margin: auto;
   gap: 1rem;
-  margin: 3rem;
 }
 .app-display .test {
   min-height: 200vh;
@@ -159,13 +160,15 @@ code {
 .app-input {
   display: flex;
   flex-direction: column-reverse;
+  width: 90vw;
   max-width: 600px;
   border: 1px solid #c0402b;
   border-radius: 10px;
   padding: 3px;
-  margin: 4vh auto;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
   overflow: hidden;
+  margin: 4vh auto;
+  margin-bottom: 6vh;
 }
 .app-input .input-element {
   background-color: transparent;
@@ -211,22 +214,31 @@ code {
   top: 0;
   width: 100%;
   background-color: #282c34;
-  padding: 15px 5vw 10px 5vw;
+  padding: 15px 2vw 10px 5vw;
   z-index: 1;
   border-bottom: 1px solid #c0402b;
   z-index: 99;
 }
-.app-header .keep-logo {
-  min-height: 55px;
-  min-width: 55px;
-  background: url(../visuals/Keep_logo.svg) no-repeat;
+.app-header svg {
+  width: 55px;
+  height: 55px;
 }
-.app-header .keep-name {
+.app-header .keep-h {
   font-size: large;
 }
-.app-header .keep-p {
-  align-self: center;
+.app-header .built-with {
+  display: flex;
+  align-items: center;
   margin-left: auto;
-  color: #c0402b;
-  font-size: small;
+  border-radius: 10px;
+  padding: 0.3rem 0.5rem;
+  background-color: whitesmoke;
+}
+.app-header .built-with svg {
+  width: 50px;
+  height: 50px;
+}
+.app-header .built-with svg:nth-child(even) {
+  width: 35px;
+  height: 35px;
 }/*# sourceMappingURL=style.css.map */

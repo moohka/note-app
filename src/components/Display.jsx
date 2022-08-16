@@ -8,7 +8,7 @@ function Display() {
   const [trigger, setTrigger] = useContext(AppContext);
   const contentRef = useRef();
 
-  //2getDocs
+  //2 getDocs
   useEffect(() => {
     // (async function () {
     //   try {
@@ -24,14 +24,14 @@ function Display() {
     // })();
   }, []);
 
-  //3updateDoc
+  //3 updateDoc
   async function updateNote(id) {
     const noteDoc = doc(db, "notes", id);
     await updateDoc(noteDoc);
     // setTrigger(!trigger);
   }
 
-  //4deleteDoc
+  //4 deleteDoc
   async function deleteNote(id) {
     const noteDoc = doc(db, "notes", id);
     await deleteDoc(noteDoc);
@@ -51,6 +51,7 @@ function Display() {
       }
     });
   }
+
   //close popup
   function closeNote(e) {
     //parents of buttons
@@ -91,7 +92,7 @@ function Display() {
       {/*each note items*/}
       {testNotes.map((note) => {
         return (
-          <div className="just-a-placeholder" key={note.id}>
+          <div className="display-div" key={note.id}>
             <div
               className="overlay"
               onClick={(e) => {
@@ -99,7 +100,7 @@ function Display() {
               }}
             >
               <div
-                className={`display-main`}
+                className="display-main"
                 id={note.id}
                 onClick={(e) => {
                   contentRef.current.style.height =
