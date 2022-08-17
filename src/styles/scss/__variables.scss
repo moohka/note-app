@@ -17,12 +17,17 @@ $box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%),
   background-color: $background-color;
   border-radius: $border-radius;
   border: none;
-  font-size: small;
+  font-size: medium;
   padding: 0.5rem 1rem;
 
   &:hover {
     background-color: $background-color-dark;
   }
+}
+
+@mixin border {
+  border: 1px solid $main-color;
+  border-radius: $border-radius;
 }
 
 @mixin text-color {

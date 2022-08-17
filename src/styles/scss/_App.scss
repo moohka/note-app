@@ -8,7 +8,6 @@
 
 body {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
-  // font-family: "Product Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-color;
@@ -31,6 +30,6 @@ code {
   font-family: monospace;
 }
 
-// .app {
-//   position: relative;
-// }
+.app {
+  position: relative;
+}

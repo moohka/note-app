@@ -1,12 +1,9 @@
 @use "./_variables" as *;
 
-.app-input {
-  display: flex;
-  flex-direction: column-reverse;
+.app-form {
   width: 90vw;
   max-width: 600px;
-  border: 1px solid #c0402b;
-  border-radius: $border-radius;
+  @include border;
   padding: 3px;
   box-shadow: $box-shadow;
   overflow: hidden;

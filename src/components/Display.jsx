@@ -5,8 +5,10 @@ import { AppContext } from "./App";
 
 function Display() {
   const [notes, setNotes] = useState([]);
-  const [trigger, setTrigger] = useContext(AppContext);
+  const [editing, setEditing] = useState(false);
   const contentRef = useRef();
+
+  const [refresh, setRefresh] = useContext(AppContext);
 
   //2 getDocs
   useEffect(() => {
@@ -22,47 +24,33 @@ function Display() {
     //     console.log(error);
     //   }
     // })();
-  }, []);
+
+    console.log("display refresh");
+  }, [refresh, editing]);
 
   //3 updateDoc
   async function updateNote(id) {
     const noteDoc = doc(db, "notes", id);
     await updateDoc(noteDoc);
-    // setTrigger(!trigger);
+    setRefresh(!refresh);
   }
 
   //4 deleteDoc
   async function deleteNote(id) {
     const noteDoc = doc(db, "notes", id);
     await deleteDoc(noteDoc);
-    // setTrigger(!trigger);
+    setRefresh(!refresh);
   }
 
   //open popup
-  function openNote(e) {
-    e.target.classList.add("popup");
-    //open overlay
-    e.target.parentNode.classList.add("popup");
-    //click anywhere to close
-    document.addEventListener("click", (e) => {
-      var isClickInsideElement = e.target.contains(e.target.childNodes[0]);
-      if (!isClickInsideElement) {
-        closeNote(e);
-      }
-    });
+  function openEdit(e) {
+    console.log("openEdit");
   }
 
   //close popup
-  function closeNote(e) {
-    //parents of buttons
-    const parent = e.target.parentNode;
-    const div = parent.parentNode;
-    div.classList.remove("popup");
-  }
-
-  function overlayCloseNote(e) {
-    const child = e.target.childNodes[0];
-    child.classList.remove("popup");
+  function closeEdit(e) {
+    console.log("closeEdit");
+    setEditing(false);
   }
 
   //textarea auto-grow
@@ -80,75 +68,82 @@ function Display() {
       content:
         "aisdjlskdfj dlkjas sdfjasidfj sadfj asldfj ;asas dfjhaskj fhksajdf aksdfhklsa jdfhkajs dfklas dfjakslfdhauslkdfh lkjjidf;lasidfj ;lasdijf ;laisjhfohiuwerf  dkf sadfs dfhsadfuh sdf dfj dfjd sahfsh  END",
     },
-    { id: 3, title: "abc", content: "content" },
-    { id: 4, title: "abc", content: "content" },
-    { id: 5, title: "abc", content: "content" },
-    { id: 6, title: "abc", content: "content" },
-    { id: 7, title: "abc", content: "content" },
+    { id: 3, title: "ab1c", content: "content" },
+    { id: 4, title: "abzzzzzc", content: "conte12312nt" },
+    { id: 5, title: "abffffc", content: "conxcvtent" },
+    { id: 6, title: "abffddfefc", content: "conte2123123sdfnt" },
+    { id: 7, title: "abdccccc", content: "contesdfnt" },
   ];
 
   return (
     <div className="app-display">
-      {/*each note items*/}
-      {testNotes.map((note) => {
-        return (
-          <div className="display-div" key={note.id}>
+      {/*edit popup*/}
+      {editing ? (
+        <div className="edit-div" onClick={closeEdit}>
+          <form className="edit-form">
+            <input className="edit-title"></input>
+
+            <textarea className="edit-content"></textarea>
+
+            <div className="edit-buttons">
+              <div className="edit-delete">D</div>
+              <button className="edit-close">Close</button>
+            </div>
+          </form>
+        </div>
+      ) : null}
+
+      {/*note display*/}
+      <div className="display-container">
+        {testNotes.map((note) => {
+          return (
             <div
-              className="overlay"
-              onClick={(e) => {
-                overlayCloseNote(e);
+              className="display-card"
+              key={note.id}
+              id={`note.id`}
+              onClick={() => {
+                setEditing(true);
               }}
             >
-              <div
-                className="display-main"
-                id={note.id}
-                onClick={(e) => {
-                  contentRef.current.style.height =
-                    contentRef.current.scrollHeight + "px";
-                  openNote(e);
-                }}
-              >
-                <input
-                  className="display-input"
-                  id="item-h"
-                  defaultValue={`${note.title}`}
-                ></input>
+              <input
+                className="display-input"
+                id="item-h"
+                defaultValue={`${note.title}`}
+              ></input>
 
-                <textarea
-                  className="display-input"
-                  id="item-p"
-                  rows="1"
-                  ref={contentRef}
-                  onInput={autoGrow}
-                  defaultValue={`${note.content}`}
-                ></textarea>
+              <textarea
+                className="display-input"
+                id="item-p"
+                rows="1"
+                ref={contentRef}
+                defaultValue={`${note.content}`}
+              ></textarea>
 
-                <div className="button-container">
-                  <i
-                    className="fi fi-rr-trash"
-                    id="delete-icon"
-                    onClick={(e) => {
-                      closeNote(e);
-                      //deleteNote();
-                    }}
-                  ></i>
+              <div className="button-container">
+                <i
+                  className="fi fi-rr-trash"
+                  id="delete-icon"
+                  onClick={() => {
+                    //delete()
+                  }}
+                ></i>
 
-                  <button
-                    className="close-button"
-                    onClick={(e) => {
-                      closeNote(e);
-                    }}
-                  >
-                    Close
-                  </button>
-                </div>
+                <button
+                  className="close-button"
+                  onClick={() => {
+                    //edit()
+                  }}
+                >
+                  Close
+                </button>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
 
-      <div className="test"></div>
+      {/*spare space*/}
+      <div className="space"></div>
     </div>
   );
 }

@@ -6,12 +6,13 @@ import Display from "./Display";
 export const AppContext = createContext();
 
 function App() {
-  const [trigger, setTrigger] = useState(true);
+  const [refresh, setRefresh] = useState(true);
 
   return (
     <div className="app">
-      <AppContext.Provider value={[trigger, setTrigger]}>
-        <Header />
+      <Header />
+
+      <AppContext.Provider value={[refresh, setRefresh]}>
         <Form />
         <Display />
       </AppContext.Provider>

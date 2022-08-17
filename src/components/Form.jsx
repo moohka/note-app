@@ -1,25 +1,18 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { notesCollection } from "../firebase-config";
-import { addDocs, addDoc } from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 import { AppContext } from "./App";
 
 function Form() {
-  const [focused, setFocused] = useState();
+  const [focused, setFocused] = useState(false);
+
   const formRef = useRef();
+
   const titleRef = useRef();
   const contentRef = useRef();
   const buttonRef = useRef();
 
-  useEffect(() => {
-    formRef.current.addEventListener("click", openForm);
-  }, []);
-
-  //1addDoc
-  const addNote = async (titleInput, contentInput) => {
-    await addDoc(notesCollection, { title: titleInput, content: contentInput });
-  };
-
-  //form open & close
+  //form useEffect
   useEffect(() => {
     if (focused) {
       titleRef.current.style.display = "block";
@@ -30,31 +23,43 @@ function Form() {
     }
   }, [focused]);
 
-  //open Form
+  //1 addDoc
+  const addNote = async (titleInput, contentInput) => {
+    await addDoc(notesCollection, { title: titleInput, content: contentInput });
+  };
+
+  //open function
+  let realCloseFunction = function (e) {
+    var isClickInsideElement = formRef.current.contains(e.target);
+
+    if (!isClickInsideElement) {
+      closeForm();
+    }
+  };
+
   function openForm() {
-    document.addEventListener("click", (e) => {
-      var isClickInsideElement = formRef.current.contains(e.target);
-      if (!isClickInsideElement) {
-        closeForm();
-      }
-    });
+    //add close function
+    document.removeEventListener("click", realCloseFunction);
+    document.addEventListener("click", realCloseFunction);
+
     setFocused(true);
   }
 
-  //close Form
-  const [trigger, setTrigger] = useContext(AppContext);
+  //close function
+  const [refresh, setRefresh] = useContext(AppContext);
 
   function closeForm() {
     if (titleRef.current.value !== "" || contentRef.current.value !== "") {
       addNote(titleRef.current.value, contentRef.current.value);
-      // setTrigger(!trigger);
+      setRefresh(!refresh);
     }
 
     titleRef.current.value = "";
     contentRef.current.value = "";
     contentRef.current.style.height = "auto";
 
-    document.removeEventListener("click", () => {});
+    //remove close function
+    document.removeEventListener("click", realCloseFunction);
     setFocused(false);
   }
 
@@ -64,7 +69,7 @@ function Form() {
     contentRef.current.style.height = contentRef.current.scrollHeight + "px";
   }
 
-  //disable input from submit
+  //disable enter from submitting
   function titleEnter(e) {
     if (e.which === 13) {
       e.preventDefault();
@@ -73,12 +78,21 @@ function Form() {
   }
 
   return (
-    <form className="app-input" ref={formRef}>
-      <div className="button-container" ref={buttonRef}>
-        <button type="button" className="close-button" onClick={closeForm}>
-          Close
-        </button>
-      </div>
+    <form
+      className="app-form"
+      ref={formRef}
+      onClick={() => {
+        if (!focused) openForm();
+      }}
+    >
+      <input
+        className="input-element"
+        type="text"
+        id="input-title"
+        placeholder="Title"
+        onKeyPress={titleEnter}
+        ref={titleRef}
+      ></input>
 
       <textarea
         className="input-element"
@@ -89,14 +103,17 @@ function Form() {
         onInput={autoGrow}
       ></textarea>
 
-      <input
-        className="input-element"
-        type="text"
-        id="input-title"
-        placeholder="Title"
-        onKeyPress={titleEnter}
-        ref={titleRef}
-      ></input>
+      <div className="button-container" ref={buttonRef}>
+        <button
+          type="button"
+          className="close-button"
+          onClick={() => {
+            closeForm();
+          }}
+        >
+          Close
+        </button>
+      </div>
     </form>
   );
 }

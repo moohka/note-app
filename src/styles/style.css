@@ -25,7 +25,32 @@ code {
   font-family: monospace;
 }
 
-.app-display {
+.app {
+  position: relative;
+}
+
+.app-display .edit-div {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.22);
+}
+.app-display .edit-div .edit-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 75vh;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: #282c34;
+  border: 1px solid #c0402b;
+  border-radius: 10px;
+  padding: 2rem 1rem;
+}
+.app-display .display-container {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -34,10 +59,7 @@ code {
   margin: auto;
   gap: 1rem;
 }
-.app-display .test {
-  min-height: 200vh;
-}
-.app-display .display-main {
+.app-display .display-container .display-card {
   border: 1px solid #c0402b;
   border-radius: 10px;
   background-color: #282c34;
@@ -45,14 +67,11 @@ code {
   overflow: hidden;
   padding: 0.7rem 1rem;
   transition: none;
-  /*edit input------------------------*/
-  /**************************************************/
-  /**************************************************/
 }
-.app-display .display-main:hover {
+.app-display .display-container .display-card:hover {
   transform: translateY(-5px);
 }
-.app-display .display-main .button-container {
+.app-display .display-container .display-card .button-container {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -62,40 +81,40 @@ code {
   justify-content: space-between;
   align-items: center;
 }
-.app-display .display-main .button-container #delete-icon {
+.app-display .display-container .display-card .button-container #delete-icon {
   display: inline;
   color: whitesmoke;
   background-color: #282c34;
   border-radius: 10px;
   border: none;
-  font-size: small;
+  font-size: medium;
   padding: 0.5rem 1rem;
   padding: 0.3rem 0.6rem;
   margin-left: 0.3rem;
 }
-.app-display .display-main .button-container #delete-icon:hover {
+.app-display .display-container .display-card .button-container #delete-icon:hover {
   background-color: #24272e;
 }
-.app-display .display-main .button-container .close-button {
+.app-display .display-container .display-card .button-container .close-button {
   display: inline;
   color: whitesmoke;
   background-color: #282c34;
   border-radius: 10px;
   border: none;
-  font-size: small;
+  font-size: medium;
   padding: 0.5rem 1rem;
   padding: 0.3rem 0.6rem;
   margin-right: 0.3rem;
 }
-.app-display .display-main .button-container .close-button:hover {
+.app-display .display-container .display-card .button-container .close-button:hover {
   background-color: #24272e;
 }
-.app-display .display-main .display-input {
+.app-display .display-container .display-card .display-input {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: medium;
   pointer-events: none;
 }
-.app-display .display-main .display-input#item-h {
+.app-display .display-container .display-card .display-input#item-h {
   font-weight: 600;
   background-color: transparent;
   color: whitesmoke;
@@ -106,60 +125,27 @@ code {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.app-display .display-main .display-input#item-p {
+.app-display .display-container .display-card .display-input#item-p {
   margin: 0 0;
   text-overflow: ellipsis;
-  overflow: hidden;
   width: 100%;
   height: auto;
-  resize: none;
   background-color: transparent;
   color: whitesmoke;
   border: none;
   outline: none;
   resize: none;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   white-space: normal;
 }
-.app-display .display-main.popup {
-  position: fixed;
-  z-index: 98;
-  padding-bottom: 40px;
-  top: 50%;
-  left: 50%;
-  min-width: 250px;
-  max-width: 500px;
-  transform: translate(-50%, -50%) scale(1.5);
-  transition: none;
-  pointer-events: none;
-}
-.app-display .display-main.popup .button-container {
-  display: flex;
-}
-.app-display .display-main.popup .display-input#item-h {
-  pointer-events: auto;
-}
-.app-display .display-main.popup .display-input#item-p {
-  pointer-events: auto;
-  font-family: sans-serif;
-  resize: none;
-  white-space: pre-wrap;
-}
-.app-display .overlay.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 97;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 255, 0.5);
+.app-display .space {
+  min-height: 80vh;
 }
 
-.app-input {
-  display: flex;
-  flex-direction: column-reverse;
+.app-form {
   width: 90vw;
   max-width: 600px;
   border: 1px solid #c0402b;
@@ -170,7 +156,7 @@ code {
   margin: 4vh auto;
   margin-bottom: 6vh;
 }
-.app-input .input-element {
+.app-form .input-element {
   background-color: transparent;
   color: whitesmoke;
   border: none;
@@ -179,30 +165,30 @@ code {
   width: 100%;
   padding: 0.6rem 1rem;
 }
-.app-input .input-element#input-title {
+.app-form .input-element#input-title {
   display: none;
   font-weight: 600;
 }
-.app-input .input-element#input-content {
+.app-form .input-element#input-content {
   font-family: sans-serif;
   resize: none;
   overflow: hidden;
 }
-.app-input .button-container {
+.app-form .button-container {
   display: none;
   text-align: right;
 }
-.app-input .button-container .close-button {
+.app-form .button-container .close-button {
   display: inline;
   color: whitesmoke;
   background-color: #282c34;
   border-radius: 10px;
   border: none;
-  font-size: small;
+  font-size: medium;
   padding: 0.5rem 1rem;
   margin-right: 0.5rem;
 }
-.app-input .button-container .close-button:hover {
+.app-form .button-container .close-button:hover {
   background-color: #24272e;
 }
 
@@ -214,7 +200,7 @@ code {
   top: 0;
   width: 100%;
   background-color: #282c34;
-  padding: 15px 2vw 10px 5vw;
+  padding: 15px 2vw 10px 7vw;
   z-index: 1;
   border-bottom: 1px solid #c0402b;
   z-index: 99;
