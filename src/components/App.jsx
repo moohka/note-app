@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import Header from "./Header";
 import Form from "./Form";
 import Display from "./Display";
@@ -7,10 +7,6 @@ export const AppContext = createContext();
 
 function App() {
   const [refresh, setRefresh] = useState(true);
-
-  useEffect(() => {
-    console.log("re-rendered");
-  }, [refresh]);
 
   return (
     <div className="app">

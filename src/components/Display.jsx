@@ -45,8 +45,6 @@ function Display(props) {
         console.log(error);
       }
     })();
-
-    console.count("update");
   }, [props.refresh]);
 
   //3 updateDoc

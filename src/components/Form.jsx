@@ -30,8 +30,7 @@ function Form(props) {
       time: Date.now(),
     })
       .then(() => {
-        props.setRefresh(!props.refresh);
-        console.log("note added");
+        window.location.reload(false); //bookmark
       })
       .catch((error) => {
         console.log(error);
