@@ -99,6 +99,10 @@ code {
 .app-display .edit-div .edit-form .edit-button-container #edit-delete:hover {
   background-color: #2e4060;
 }
+.app-display .edit-div .edit-form .edit-button-container #edit-time {
+  margin: auto;
+  font-size: x-small;
+}
 .app-display .edit-div .edit-form .edit-button-container #edit-close {
   display: inline;
   color: whitesmoke;

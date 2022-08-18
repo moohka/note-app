@@ -52,6 +52,11 @@
           @include button;
         }
 
+        & #edit-time {
+          margin: auto;
+          font-size: x-small;
+        }
+
         & #edit-close {
           @include button;
         }

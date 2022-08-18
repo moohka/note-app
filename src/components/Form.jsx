@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { notesCollection } from "../firebase-config";
-import { addDoc } from "firebase/firestore";
+import { notesCollectionRef } from "../firebase-config";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 import { AppContext } from "./App";
 
 function Form() {
@@ -25,7 +25,11 @@ function Form() {
 
   //1 addDoc
   const addNote = async (titleInput, contentInput) => {
-    await addDoc(notesCollection, { title: titleInput, content: contentInput });
+    await addDoc(notesCollectionRef, {
+      title: titleInput,
+      content: contentInput,
+      time: serverTimestamp(),
+    });
   };
 
   //open function
@@ -39,8 +43,8 @@ function Form() {
 
   function openForm() {
     //add close function
-    document.removeEventListener("click", realCloseFunction);
-    document.addEventListener("click", realCloseFunction);
+    document.removeEventListener("mousedown", realCloseFunction);
+    document.addEventListener("mousedown", realCloseFunction);
 
     setFocused(true);
   }

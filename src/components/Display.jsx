@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState, useContext } from "react";
-import { db, notesCollection } from "../firebase-config";
-import { doc, getDocs, updateDoc, deleteDoc } from "firebase/firestore";
+import { db, notesCollectionRef } from "../firebase-config";
+import {
+  doc,
+  query,
+  orderBy,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import { AppContext } from "./App";
 
 function Display() {
@@ -15,6 +22,7 @@ function Display() {
     id: "",
     title: "",
     content: "",
+    time: {},
   });
 
   //useRef
@@ -27,7 +35,10 @@ function Display() {
   useEffect(() => {
     (async function () {
       try {
-        const data = await getDocs(notesCollection);
+        const data = await getDocs(
+          query(notesCollectionRef, orderBy("time", "desc"))
+        );
+
         setNotes(
           data.docs.map((doc) => {
             return { ...doc.data(), id: doc.id };
@@ -65,8 +76,23 @@ function Display() {
     let theId = e.target.getAttribute("note-id");
     let theTitle = e.target.getAttribute("note-title");
     let theContent = e.target.getAttribute("note-content");
+    let theTime = e.target.getAttribute("note-time");
 
-    setSelectedNote({ id: theId, title: theTitle, content: theContent });
+    let ddd = new Date();
+
+    setSelectedNote({
+      id: theId,
+      title: theTitle,
+      content: theContent,
+      time: new Date(theTime * 1000),
+    });
+
+    //
+    const testTime = new Date(theTime * 1000).toUTCString();
+    console.log(testTime);
+    console.log(ddd);
+    console.log(Date.now());
+    //
 
     setEditing(true);
   }
@@ -128,6 +154,10 @@ function Display() {
                 <i className="fi fi-rr-trash"></i>
               </div>
 
+              <div id="edit-time">
+                <p>last edited: {}</p>
+              </div>
+
               <button
                 type="button"
                 id="edit-close"
@@ -153,6 +183,7 @@ function Display() {
                 note-id={note.id}
                 note-title={note.title}
                 note-content={note.content}
+                note-time={note.time}
                 onClick={(e) => {
                   openEdit(e);
                 }}

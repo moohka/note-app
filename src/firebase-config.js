@@ -15,4 +15,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 export const db = getFirestore(app);
-export const notesCollection = collection(db, "notes");
+export const notesCollectionRef = collection(db, "notes");
