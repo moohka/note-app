@@ -1,7 +1,18 @@
+/*variables*/
+/*mixins*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+*::-webkit-scrollbar {
+  width: 16px;
+  background-color: #282c34;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #c0402b;
+  border-radius: 30px;
+  border: 3px solid #282c34;
 }
 
 body {
@@ -10,15 +21,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
   color: whitesmoke;
-}
-body::-webkit-scrollbar {
-  width: 16px;
-  background-color: #282c34;
-}
-body::-webkit-scrollbar-thumb {
-  background-color: #c0402b;
-  border-radius: 30px;
-  border: 3px solid #282c34;
 }
 
 code {
@@ -29,6 +31,9 @@ code {
   position: relative;
 }
 
+.app-display {
+  /************************************************************/
+}
 .app-display .edit-div {
   position: fixed;
   z-index: 99;
@@ -36,7 +41,8 @@ code {
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.26);
+  padding: 0 1rem;
 }
 .app-display .edit-div .edit-form {
   position: absolute;
@@ -48,7 +54,62 @@ code {
   background-color: #282c34;
   border: 1px solid #c0402b;
   border-radius: 10px;
-  padding: 2rem 1rem;
+  display: flex;
+  flex-flow: column;
+}
+@media only screen and (max-width: 780px) {
+  .app-display .edit-div .edit-form {
+    width: 90vw;
+    background-color: red;
+  }
+}
+.app-display .edit-div .edit-form .edit-input {
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  font-size: large;
+  width: 100%;
+  padding: 0.6rem 1rem;
+}
+.app-display .edit-div .edit-form .edit-input#edit-title {
+  font-weight: 600;
+}
+.app-display .edit-div .edit-form .edit-input#edit-content {
+  font-family: sans-serif;
+  resize: none;
+  flex: 1;
+}
+.app-display .edit-div .edit-form .edit-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.3rem 1rem;
+  border-top: 1px solid #c0402b;
+}
+.app-display .edit-div .edit-form .edit-button-container #edit-delete {
+  display: inline;
+  color: whitesmoke;
+  background-color: #282c34;
+  border-radius: 10px;
+  border: none;
+  font-size: medium;
+  padding: 0.5rem 1rem;
+}
+.app-display .edit-div .edit-form .edit-button-container #edit-delete:hover {
+  background-color: #2e4060;
+}
+.app-display .edit-div .edit-form .edit-button-container #edit-close {
+  display: inline;
+  color: whitesmoke;
+  background-color: #282c34;
+  border-radius: 10px;
+  border: none;
+  font-size: medium;
+  padding: 0.5rem 1rem;
+}
+.app-display .edit-div .edit-form .edit-button-container #edit-close:hover {
+  background-color: #2e4060;
 }
 .app-display .display-container {
   display: grid;
@@ -66,48 +127,10 @@ code {
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
   overflow: hidden;
   padding: 0.7rem 1rem;
-  transition: none;
+  transition: all 0.2s ease;
 }
 .app-display .display-container .display-card:hover {
   transform: translateY(-5px);
-}
-.app-display .display-container .display-card .button-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-}
-.app-display .display-container .display-card .button-container #delete-icon {
-  display: inline;
-  color: whitesmoke;
-  background-color: #282c34;
-  border-radius: 10px;
-  border: none;
-  font-size: medium;
-  padding: 0.5rem 1rem;
-  padding: 0.3rem 0.6rem;
-  margin-left: 0.3rem;
-}
-.app-display .display-container .display-card .button-container #delete-icon:hover {
-  background-color: #24272e;
-}
-.app-display .display-container .display-card .button-container .close-button {
-  display: inline;
-  color: whitesmoke;
-  background-color: #282c34;
-  border-radius: 10px;
-  border: none;
-  font-size: medium;
-  padding: 0.5rem 1rem;
-  padding: 0.3rem 0.6rem;
-  margin-right: 0.3rem;
-}
-.app-display .display-container .display-card .button-container .close-button:hover {
-  background-color: #24272e;
 }
 .app-display .display-container .display-card .display-input {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
@@ -129,17 +152,14 @@ code {
   margin: 0 0;
   text-overflow: ellipsis;
   width: 100%;
-  height: auto;
   background-color: transparent;
   color: whitesmoke;
   border: none;
   outline: none;
-  resize: none;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  white-space: normal;
 }
 .app-display .space {
   min-height: 80vh;
@@ -173,6 +193,7 @@ code {
   font-family: sans-serif;
   resize: none;
   overflow: hidden;
+  padding: 0.6rem 1rem 0.3rem 1rem;
 }
 .app-form .button-container {
   display: none;
@@ -189,7 +210,7 @@ code {
   margin-right: 0.5rem;
 }
 .app-form .button-container .close-button:hover {
-  background-color: #24272e;
+  background-color: #2e4060;
 }
 
 .app-header {
@@ -201,13 +222,12 @@ code {
   width: 100%;
   background-color: #282c34;
   padding: 15px 2vw 10px 7vw;
-  z-index: 1;
   border-bottom: 1px solid #c0402b;
-  z-index: 99;
+  z-index: 98;
 }
-.app-header svg {
-  width: 55px;
-  height: 55px;
+.app-header .main-logo svg {
+  min-width: 60px;
+  height: 60px;
 }
 .app-header .keep-h {
   font-size: large;
@@ -217,14 +237,24 @@ code {
   align-items: center;
   margin-left: auto;
   border-radius: 10px;
-  padding: 0.3rem 0.5rem;
   background-color: whitesmoke;
+  padding: 0.3rem 0.5rem;
 }
-.app-header .built-with svg {
-  width: 50px;
-  height: 50px;
+@media only screen and (max-width: 780px) {
+  .app-header .built-with {
+    padding: 0.2rem 0.3rem;
+  }
 }
-.app-header .built-with svg:nth-child(even) {
-  width: 35px;
-  height: 35px;
+.app-header .built-with .built-with-logo svg {
+  width: 55px;
+  height: 55px;
+}
+.app-header .built-with .built-with-logo:nth-child(even) svg {
+  width: 40px;
+  height: 40px;
+}
+@media only screen and (max-width: 780px) {
+  .app-header .built-with .built-with-logo:nth-child(even) svg {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */

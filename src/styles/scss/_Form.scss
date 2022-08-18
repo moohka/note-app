@@ -1,4 +1,4 @@
-@use "./_variables" as *;
+@use "./_abstracts" as *;
 
 .app-form {
   width: 90vw;
@@ -11,23 +11,17 @@
   margin-bottom: 6vh;
 
   & .input-element {
-    background-color: transparent;
-    color: $font-color;
-    border: none;
-    outline: none;
-    font-size: large;
-    width: 100%;
-    padding: 0.6rem 1rem;
+    @include form-inputs;
 
     &#input-title {
       display: none;
-      font-weight: 600;
+      @include title-input;
     }
 
     &#input-content {
-      font-family: sans-serif;
-      resize: none;
+      @include content-textarea;
       overflow: hidden;
+      padding: 0.6rem 1rem 0.3rem 1rem; //slight adjustment
     }
   }
 

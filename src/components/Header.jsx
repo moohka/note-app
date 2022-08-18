@@ -8,15 +8,27 @@ import { ReactComponent as Plus } from "../visuals/plus.svg";
 function Header() {
   return (
     <header className="app-header">
-      <KeepMain />
+      <div className="main-logo">
+        <KeepMain />
+      </div>
       <span className="keep-h">Keep</span>
 
       <div className="built-with">
-        <React />
-        <Plus />
-        <Firebase />
-        <Plus />
-        <Keep />
+        <div className="built-with-logo">
+          <React />
+        </div>
+        <div className="built-with-logo">
+          <Plus />
+        </div>
+        <div className="built-with-logo">
+          <Firebase />
+        </div>
+        <div className="built-with-logo">
+          <Plus />
+        </div>
+        <div className="built-with-logo">
+          <Keep />
+        </div>
       </div>
     </header>
   );

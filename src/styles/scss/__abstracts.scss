@@ -1,3 +1,4 @@
+/*variables*/
 $background-color: #282c34;
 $background-color-dark: #24272e;
 
@@ -11,6 +12,13 @@ $border-radius: 10px;
 $box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%),
   rgba(0, 0, 0, 0.3) 0px 5px 13px;
 
+/*mixins*/
+@mixin mobile {
+  @media only screen and (max-width: 780px) {
+    @content;
+  }
+}
+
 @mixin button {
   display: inline;
   color: $font-color;
@@ -21,7 +29,7 @@ $box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%),
   padding: 0.5rem 1rem;
 
   &:hover {
-    background-color: $background-color-dark;
+    background-color: $sub-color;
   }
 }
 
@@ -35,4 +43,24 @@ $box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%),
   color: $font-color;
   border: none;
   outline: none;
+}
+
+//form
+@mixin form-inputs {
+  background-color: transparent;
+  color: $font-color;
+  border: none;
+  outline: none;
+  font-size: large;
+  width: 100%;
+  padding: 0.6rem 1rem;
+}
+
+@mixin title-input {
+  font-weight: 600;
+}
+
+@mixin content-textarea {
+  font-family: sans-serif;
+  resize: none;
 }

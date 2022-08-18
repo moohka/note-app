@@ -4,90 +4,140 @@ import { doc, getDocs, updateDoc, deleteDoc } from "firebase/firestore";
 import { AppContext } from "./App";
 
 function Display() {
+  //useContext
+  const [refresh, setRefresh] = useContext(AppContext);
+
+  //useState
   const [notes, setNotes] = useState([]);
   const [editing, setEditing] = useState(false);
-  const contentRef = useRef();
 
-  const [refresh, setRefresh] = useContext(AppContext);
+  const [selectedNote, setSelectedNote] = useState({
+    id: "",
+    title: "",
+    content: "",
+  });
+
+  //useRef
+  const noteTitleRef = useRef();
+  const noteContentRef = useRef();
+  const editTitleRef = useRef();
+  const editContentRef = useRef();
 
   //2 getDocs
   useEffect(() => {
-    // (async function () {
-    //   try {
-    //     const data = await getDocs(notesCollection);
-    //     setNotes(
-    //       data.docs.map((doc) => {
-    //         return { ...doc.data(), id: doc.id };
-    //       })
-    //     );
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // })();
-
-    console.log("display refresh");
-  }, [refresh, editing]);
+    (async function () {
+      try {
+        const data = await getDocs(notesCollection);
+        setNotes(
+          data.docs.map((doc) => {
+            return { ...doc.data(), id: doc.id };
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [refresh]);
 
   //3 updateDoc
-  async function updateNote(id) {
-    const noteDoc = doc(db, "notes", id);
-    await updateDoc(noteDoc);
-    setRefresh(!refresh);
+  async function updateNote() {
+    if (
+      selectedNote.title !== editTitleRef.current.value ||
+      selectedNote.content !== editContentRef.current.value
+    ) {
+      const noteDoc = doc(db, "notes", selectedNote.id);
+      const newFields = {
+        title: editTitleRef.current.value,
+        content: editContentRef.current.value,
+      };
+      await updateDoc(noteDoc, newFields);
+    }
   }
 
   //4 deleteDoc
-  async function deleteNote(id) {
-    const noteDoc = doc(db, "notes", id);
+  async function deleteNote() {
+    const noteDoc = doc(db, "notes", selectedNote.id);
     await deleteDoc(noteDoc);
+  }
+
+  //open edit popup
+  function openEdit(e) {
+    let theId = e.target.getAttribute("note-id");
+    let theTitle = e.target.getAttribute("note-title");
+    let theContent = e.target.getAttribute("note-content");
+
+    setSelectedNote({ id: theId, title: theTitle, content: theContent });
+
+    setEditing(true);
+  }
+
+  //close edit popup
+  function closeEdit() {
+    setEditing(false);
     setRefresh(!refresh);
   }
 
-  //open popup
-  function openEdit(e) {
-    console.log("openEdit");
+  //disable form sumit
+  function titleEnter(e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      editContentRef.current.focus();
+    }
   }
-
-  //close popup
-  function closeEdit(e) {
-    console.log("closeEdit");
-    setEditing(false);
-  }
-
-  //textarea auto-grow
-  function autoGrow() {
-    contentRef.current.style.height = "auto";
-    contentRef.current.style.height = contentRef.current.scrollHeight + "px";
-  }
-
-  //TEST DATA
-  const testNotes = [
-    { id: 1, title: "abc", content: "content" },
-    {
-      id: 2,
-      title: "fjeifj",
-      content:
-        "aisdjlskdfj dlkjas sdfjasidfj sadfj asldfj ;asas dfjhaskj fhksajdf aksdfhklsa jdfhkajs dfklas dfjakslfdhauslkdfh lkjjidf;lasidfj ;lasdijf ;laisjhfohiuwerf  dkf sadfs dfhsadfuh sdf dfj dfjd sahfsh  END",
-    },
-    { id: 3, title: "ab1c", content: "content" },
-    { id: 4, title: "abzzzzzc", content: "conte12312nt" },
-    { id: 5, title: "abffffc", content: "conxcvtent" },
-    { id: 6, title: "abffddfefc", content: "conte2123123sdfnt" },
-    { id: 7, title: "abdccccc", content: "contesdfnt" },
-  ];
 
   return (
     <div className="app-display">
       {/*edit popup*/}
       {editing ? (
-        <div className="edit-div" onClick={closeEdit}>
-          <form className="edit-form">
-            <input className="edit-title"></input>
+        <div
+          className="edit-div"
+          onMouseDown={() => {
+            updateNote();
+            closeEdit();
+          }}
+        >
+          <form
+            className="edit-form"
+            onMouseDown={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <input
+              className="edit-input"
+              id="edit-title"
+              onKeyDown={titleEnter}
+              defaultValue={selectedNote.title}
+              ref={editTitleRef}
+            ></input>
 
-            <textarea className="edit-content"></textarea>
+            <textarea
+              className="edit-input"
+              id="edit-content"
+              defaultValue={selectedNote.content}
+              ref={editContentRef}
+            ></textarea>
 
-            <div className="edit-buttons">
-              <div className="edit-delete">D</div>
-              <button className="edit-close">Close</button>
+            <div className="edit-button-container">
+              <div
+                id="edit-delete"
+                onClick={() => {
+                  deleteNote();
+                  closeEdit();
+                }}
+              >
+                <i className="fi fi-rr-trash"></i>
+              </div>
+
+              <button
+                type="button"
+                id="edit-close"
+                onClick={() => {
+                  updateNote();
+                  closeEdit();
+                }}
+              >
+                Close
+              </button>
             </div>
           </form>
         </div>
@@ -95,47 +145,25 @@ function Display() {
 
       {/*note display*/}
       <div className="display-container">
-        {testNotes.map((note) => {
+        {notes.map((note) => {
           return (
-            <div
-              className="display-card"
-              key={note.id}
-              id={`note.id`}
-              onClick={() => {
-                setEditing(true);
-              }}
-            >
-              <input
-                className="display-input"
-                id="item-h"
-                defaultValue={`${note.title}`}
-              ></input>
+            <div className="display-placeholder" key={note.id}>
+              <div
+                className="display-card"
+                note-id={note.id}
+                note-title={note.title}
+                note-content={note.content}
+                onClick={(e) => {
+                  openEdit(e);
+                }}
+              >
+                <h2 className="display-input" id="item-h" ref={noteTitleRef}>
+                  {note.title}
+                </h2>
 
-              <textarea
-                className="display-input"
-                id="item-p"
-                rows="1"
-                ref={contentRef}
-                defaultValue={`${note.content}`}
-              ></textarea>
-
-              <div className="button-container">
-                <i
-                  className="fi fi-rr-trash"
-                  id="delete-icon"
-                  onClick={() => {
-                    //delete()
-                  }}
-                ></i>
-
-                <button
-                  className="close-button"
-                  onClick={() => {
-                    //edit()
-                  }}
-                >
-                  Close
-                </button>
+                <p className="display-input" id="item-p" ref={noteContentRef}>
+                  {note.content}
+                </p>
               </div>
             </div>
           );

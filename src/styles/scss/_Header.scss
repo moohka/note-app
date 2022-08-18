@@ -1,4 +1,4 @@
-@use "./_variables" as *;
+@use "./_abstracts" as *;
 
 .app-header {
   position: sticky;
@@ -8,13 +8,14 @@
   width: 100%;
   background-color: $background-color;
   padding: 15px 2vw 10px 7vw;
-  z-index: 1;
   border-bottom: 1px solid $main-color;
-  z-index: 99;
+  z-index: 98;
 
-  & svg {
-    width: 55px;
-    height: 55px;
+  & .main-logo {
+    & svg {
+      min-width: 60px;
+      height: 60px;
+    }
   }
 
   & .keep-h {
@@ -26,16 +27,28 @@
     align-items: center;
     margin-left: auto;
     border-radius: $border-radius;
-    padding: 0.3rem 0.5rem;
     background-color: $font-color;
+    padding: 0.3rem 0.5rem;
 
-    & svg {
-      width: 50px;
-      height: 50px;
+    @include mobile {
+      padding: 0.2rem 0.3rem;
+    }
+
+    & .built-with-logo {
+      & svg {
+        width: 55px;
+        height: 55px;
+      }
 
       &:nth-child(even) {
-        width: 35px;
-        height: 35px;
+        & svg {
+          width: 40px;
+          height: 40px;
+
+          @include mobile {
+            display: none;
+          }
+        }
       }
     }
   }
