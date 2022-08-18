@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import { notesCollectionRef } from "../firebase-config";
-import { addDoc, serverTimestamp } from "firebase/firestore";
-import { AppContext } from "./App";
+import { addDoc } from "firebase/firestore";
 
-function Form() {
+function Form(props) {
   const [focused, setFocused] = useState(false);
 
   const formRef = useRef();
@@ -21,19 +20,26 @@ function Form() {
       titleRef.current.style.display = "none";
       buttonRef.current.style.display = "none";
     }
-  }, [focused]);
+  }, [focused, props.refresh]);
 
   //1 addDoc
   const addNote = async (titleInput, contentInput) => {
     await addDoc(notesCollectionRef, {
       title: titleInput,
       content: contentInput,
-      time: serverTimestamp(),
-    });
+      time: Date.now(),
+    })
+      .then(() => {
+        props.setRefresh(!props.refresh);
+        console.log("note added");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   //open function
-  let realCloseFunction = function (e) {
+  let focusCloseForm = function (e) {
     var isClickInsideElement = formRef.current.contains(e.target);
 
     if (!isClickInsideElement) {
@@ -43,19 +49,15 @@ function Form() {
 
   function openForm() {
     //add close function
-    document.removeEventListener("mousedown", realCloseFunction);
-    document.addEventListener("mousedown", realCloseFunction);
+    document.addEventListener("mousedown", focusCloseForm);
 
     setFocused(true);
   }
 
   //close function
-  const [refresh, setRefresh] = useContext(AppContext);
-
   function closeForm() {
     if (titleRef.current.value !== "" || contentRef.current.value !== "") {
       addNote(titleRef.current.value, contentRef.current.value);
-      setRefresh(!refresh);
     }
 
     titleRef.current.value = "";
@@ -63,7 +65,7 @@ function Form() {
     contentRef.current.style.height = "auto";
 
     //remove close function
-    document.removeEventListener("click", realCloseFunction);
+    document.removeEventListener("click", focusCloseForm);
     setFocused(false);
   }
 
@@ -83,8 +85,11 @@ function Form() {
 
   return (
     <form
-      className="app-form"
+      id="app-form"
       ref={formRef}
+      onMouseDown={(e) => {
+        e.stopPropagation();
+      }}
       onClick={() => {
         if (!focused) openForm();
       }}

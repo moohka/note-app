@@ -1,6 +1,6 @@
 @use "./_abstracts" as *;
 
-.app-form {
+#app-form {
   width: 90vw;
   max-width: 600px;
   @include border;
@@ -9,6 +9,7 @@
   overflow: hidden;
   margin: 4vh auto;
   margin-bottom: 6vh;
+  z-index: 99;
 
   & .input-element {
     @include form-inputs;

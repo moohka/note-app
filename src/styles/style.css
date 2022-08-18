@@ -31,10 +31,10 @@ code {
   position: relative;
 }
 
-.app-display {
+#app-display {
   /************************************************************/
 }
-.app-display .edit-div {
+#app-display .edit-div {
   position: fixed;
   z-index: 99;
   top: 0;
@@ -44,26 +44,37 @@ code {
   background: rgba(0, 0, 0, 0.26);
   padding: 0 1rem;
 }
-.app-display .edit-div .edit-form {
+#app-display .edit-div .edit-form {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 700px;
   height: 75vh;
-  transform: translate(-50%, -50%) scale(1);
   background-color: #282c34;
   border: 1px solid #c0402b;
   border-radius: 10px;
   display: flex;
   flex-flow: column;
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-animation: pop 0.2s ease forwards;
+          animation: pop 0.2s ease forwards;
 }
 @media only screen and (max-width: 780px) {
-  .app-display .edit-div .edit-form {
+  #app-display .edit-div .edit-form {
     width: 90vw;
-    background-color: red;
   }
 }
-.app-display .edit-div .edit-form .edit-input {
+@-webkit-keyframes pop {
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes pop {
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+#app-display .edit-div .edit-form .edit-input {
   background-color: transparent;
   color: whitesmoke;
   border: none;
@@ -72,22 +83,22 @@ code {
   width: 100%;
   padding: 0.6rem 1rem;
 }
-.app-display .edit-div .edit-form .edit-input#edit-title {
+#app-display .edit-div .edit-form .edit-input#edit-title {
   font-weight: 600;
 }
-.app-display .edit-div .edit-form .edit-input#edit-content {
+#app-display .edit-div .edit-form .edit-input#edit-content {
   font-family: sans-serif;
   resize: none;
   flex: 1;
 }
-.app-display .edit-div .edit-form .edit-button-container {
+#app-display .edit-div .edit-form .edit-button-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0.3rem 1rem;
   border-top: 1px solid #c0402b;
 }
-.app-display .edit-div .edit-form .edit-button-container #edit-delete {
+#app-display .edit-div .edit-form .edit-button-container #edit-delete {
   display: inline;
   color: whitesmoke;
   background-color: #282c34;
@@ -96,14 +107,17 @@ code {
   font-size: medium;
   padding: 0.5rem 1rem;
 }
-.app-display .edit-div .edit-form .edit-button-container #edit-delete:hover {
+#app-display .edit-div .edit-form .edit-button-container #edit-delete:hover {
   background-color: #2e4060;
 }
-.app-display .edit-div .edit-form .edit-button-container #edit-time {
+#app-display .edit-div .edit-form .edit-button-container #edit-time {
   margin: auto;
-  font-size: x-small;
+  font-size: 15px;
 }
-.app-display .edit-div .edit-form .edit-button-container #edit-close {
+#app-display .edit-div .edit-form .edit-button-container #edit-time span {
+  font-size: 13px;
+}
+#app-display .edit-div .edit-form .edit-button-container #edit-close {
   display: inline;
   color: whitesmoke;
   background-color: #282c34;
@@ -112,10 +126,10 @@ code {
   font-size: medium;
   padding: 0.5rem 1rem;
 }
-.app-display .edit-div .edit-form .edit-button-container #edit-close:hover {
+#app-display .edit-div .edit-form .edit-button-container #edit-close:hover {
   background-color: #2e4060;
 }
-.app-display .display-container {
+#app-display .display-container {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -124,7 +138,7 @@ code {
   margin: auto;
   gap: 1rem;
 }
-.app-display .display-container .display-card {
+#app-display .display-container .display-card {
   border: 1px solid #c0402b;
   border-radius: 10px;
   background-color: #282c34;
@@ -132,16 +146,17 @@ code {
   overflow: hidden;
   padding: 0.7rem 1rem;
   transition: all 0.2s ease;
+  transition-property: transform;
 }
-.app-display .display-container .display-card:hover {
+#app-display .display-container .display-card:hover {
   transform: translateY(-5px);
 }
-.app-display .display-container .display-card .display-input {
+#app-display .display-container .display-card .display-input {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: medium;
   pointer-events: none;
 }
-.app-display .display-container .display-card .display-input#item-h {
+#app-display .display-container .display-card .display-input#item-h {
   font-weight: 600;
   background-color: transparent;
   color: whitesmoke;
@@ -152,7 +167,7 @@ code {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.app-display .display-container .display-card .display-input#item-p {
+#app-display .display-container .display-card .display-input#item-p {
   margin: 0 0;
   text-overflow: ellipsis;
   width: 100%;
@@ -165,11 +180,11 @@ code {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
-.app-display .space {
+#app-display .space {
   min-height: 80vh;
 }
 
-.app-form {
+#app-form {
   width: 90vw;
   max-width: 600px;
   border: 1px solid #c0402b;
@@ -179,8 +194,9 @@ code {
   overflow: hidden;
   margin: 4vh auto;
   margin-bottom: 6vh;
+  z-index: 99;
 }
-.app-form .input-element {
+#app-form .input-element {
   background-color: transparent;
   color: whitesmoke;
   border: none;
@@ -189,21 +205,21 @@ code {
   width: 100%;
   padding: 0.6rem 1rem;
 }
-.app-form .input-element#input-title {
+#app-form .input-element#input-title {
   display: none;
   font-weight: 600;
 }
-.app-form .input-element#input-content {
+#app-form .input-element#input-content {
   font-family: sans-serif;
   resize: none;
   overflow: hidden;
   padding: 0.6rem 1rem 0.3rem 1rem;
 }
-.app-form .button-container {
+#app-form .button-container {
   display: none;
   text-align: right;
 }
-.app-form .button-container .close-button {
+#app-form .button-container .close-button {
   display: inline;
   color: whitesmoke;
   background-color: #282c34;
@@ -213,11 +229,11 @@ code {
   padding: 0.5rem 1rem;
   margin-right: 0.5rem;
 }
-.app-form .button-container .close-button:hover {
+#app-form .button-container .close-button:hover {
   background-color: #2e4060;
 }
 
-.app-header {
+#app-header {
   position: -webkit-sticky;
   position: sticky;
   display: flex;
@@ -229,14 +245,14 @@ code {
   border-bottom: 1px solid #c0402b;
   z-index: 98;
 }
-.app-header .main-logo svg {
+#app-header .main-logo svg {
   min-width: 60px;
   height: 60px;
 }
-.app-header .keep-h {
+#app-header .keep-h {
   font-size: large;
 }
-.app-header .built-with {
+#app-header .built-with {
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -245,20 +261,20 @@ code {
   padding: 0.3rem 0.5rem;
 }
 @media only screen and (max-width: 780px) {
-  .app-header .built-with {
+  #app-header .built-with {
     padding: 0.2rem 0.3rem;
   }
 }
-.app-header .built-with .built-with-logo svg {
+#app-header .built-with .built-with-logo svg {
   width: 55px;
   height: 55px;
 }
-.app-header .built-with .built-with-logo:nth-child(even) svg {
+#app-header .built-with .built-with-logo:nth-child(even) svg {
   width: 40px;
   height: 40px;
 }
 @media only screen and (max-width: 780px) {
-  .app-header .built-with .built-with-logo:nth-child(even) svg {
+  #app-header .built-with .built-with-logo:nth-child(even) svg {
     display: none;
   }
 }/*# sourceMappingURL=style.css.map */

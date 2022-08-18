@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useContext } from "react";
+import { useEffect, useRef, useState } from "react";
 import { db, notesCollectionRef } from "../firebase-config";
 import {
   doc,
@@ -8,12 +8,8 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { AppContext } from "./App";
 
-function Display() {
-  //useContext
-  const [refresh, setRefresh] = useContext(AppContext);
-
+function Display(props) {
   //useState
   const [notes, setNotes] = useState([]);
   const [editing, setEditing] = useState(false);
@@ -22,8 +18,9 @@ function Display() {
     id: "",
     title: "",
     content: "",
-    time: {},
+    time: 0,
   });
+  const [targetElement, setTargetElement] = useState();
 
   //useRef
   const noteTitleRef = useRef();
@@ -48,7 +45,9 @@ function Display() {
         console.log(error);
       }
     })();
-  }, [refresh]);
+
+    console.count("update");
+  }, [props.refresh]);
 
   //3 updateDoc
   async function updateNote() {
@@ -61,14 +60,16 @@ function Display() {
         title: editTitleRef.current.value,
         content: editContentRef.current.value,
       };
-      await updateDoc(noteDoc, newFields);
+      await updateDoc(noteDoc, newFields).then(() =>
+        props.setRefresh(!props.refresh)
+      );
     }
   }
 
   //4 deleteDoc
   async function deleteNote() {
     const noteDoc = doc(db, "notes", selectedNote.id);
-    await deleteDoc(noteDoc);
+    await deleteDoc(noteDoc).then(() => props.setRefresh(!props.refresh));
   }
 
   //open edit popup
@@ -78,29 +79,25 @@ function Display() {
     let theContent = e.target.getAttribute("note-content");
     let theTime = e.target.getAttribute("note-time");
 
-    let ddd = new Date();
+    let conversion = new Date(parseInt(theTime));
+    let timeInString = conversion.toLocaleString("en-us");
 
     setSelectedNote({
       id: theId,
       title: theTitle,
       content: theContent,
-      time: new Date(theTime * 1000),
+      time: timeInString,
     });
 
-    //
-    const testTime = new Date(theTime * 1000).toUTCString();
-    console.log(testTime);
-    console.log(ddd);
-    console.log(Date.now());
-    //
+    setTargetElement(e.target);
 
     setEditing(true);
   }
 
   //close edit popup
   function closeEdit() {
+    targetElement.style.visibility = "visible";
     setEditing(false);
-    setRefresh(!refresh);
   }
 
   //disable form sumit
@@ -112,7 +109,7 @@ function Display() {
   }
 
   return (
-    <div className="app-display">
+    <div id="app-display">
       {/*edit popup*/}
       {editing ? (
         <div
@@ -155,7 +152,9 @@ function Display() {
               </div>
 
               <div id="edit-time">
-                <p>last edited: {}</p>
+                <p>
+                  last edited: <span>{selectedNote.time}</span>
+                </p>
               </div>
 
               <button
@@ -185,6 +184,7 @@ function Display() {
                 note-content={note.content}
                 note-time={note.time}
                 onClick={(e) => {
+                  e.target.style.visibility = "hidden";
                   openEdit(e);
                 }}
               >

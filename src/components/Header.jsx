@@ -7,7 +7,7 @@ import { ReactComponent as Plus } from "../visuals/plus.svg";
 
 function Header() {
   return (
-    <header className="app-header">
+    <header id="app-header">
       <div className="main-logo">
         <KeepMain />
       </div>
