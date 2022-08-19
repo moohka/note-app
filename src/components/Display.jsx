@@ -35,6 +35,7 @@ function Display(props) {
         const data = await getDocs(
           query(notesCollectionRef, orderBy("time", "desc"))
         );
+
         setNotes(
           data.docs.map((doc) => {
             return { ...doc.data(), id: doc.id };
