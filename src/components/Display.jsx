@@ -58,16 +58,14 @@ function Display(props) {
         title: editTitleRef.current.value,
         content: editContentRef.current.value,
       };
-      await updateDoc(noteDoc, newFields).then(() =>
-        props.setRefresh(!props.refresh)
-      );
+      await updateDoc(noteDoc, newFields).then(() => props.forceRefresh());
     }
   }
 
   //4 deleteDoc
   async function deleteNote() {
     const noteDoc = doc(db, "notes", selectedNote.id);
-    await deleteDoc(noteDoc).then(() => props.setRefresh(!props.refresh));
+    await deleteDoc(noteDoc).then(() => props.forceRefresh());
   }
 
   //open edit popup

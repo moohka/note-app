@@ -13,13 +13,13 @@
 
   & .main-logo {
     & svg {
-      min-width: 60px;
-      height: 60px;
+      min-width: $logo-size;
+      height: $logo-size;
     }
   }
 
   & .keep-h {
-    font-size: large;
+    font-size: $title-size;
   }
 
   & .built-with {
@@ -36,14 +36,14 @@
 
     & .built-with-logo {
       & svg {
-        width: 55px;
-        height: 55px;
+        width: $built-size;
+        height: $built-size;
       }
 
       &:nth-child(even) {
         & svg {
-          width: 40px;
-          height: 40px;
+          width: $built-size-small;
+          height: $built-size-small;
 
           @include mobile {
             display: none;

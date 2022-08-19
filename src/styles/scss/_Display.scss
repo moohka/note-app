@@ -53,15 +53,20 @@
         padding: 0.3rem 1rem;
         border-top: 1px solid $main-color;
 
+        @include mobile {
+          padding: 0.3rem 0;
+        }
+
         & #edit-delete {
           @include button;
         }
 
         & #edit-time {
           margin: auto;
-          font-size: 15px;
+          font-size: 12px;
+
           & span {
-            font-size: 13px;
+            font-size: 11px;
           }
         }
 
@@ -72,9 +77,9 @@
     } //end of form
   } //end of overlay
 
-  //popup
+  //edit popup
   /************************************************************/
-  //display
+  //note display
 
   & .display-container {
     display: grid;
@@ -84,6 +89,10 @@
     width: 90vw;
     margin: auto;
     gap: 1rem;
+
+    @include mobile {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 
     & .display-card {
       @include border;
@@ -123,6 +132,10 @@
           display: -webkit-box;
           -webkit-line-clamp: 4;
           -webkit-box-orient: vertical;
+
+          @include mobile {
+            -webkit-line-clamp: 6;
+          }
         }
       }
     } //end of card

@@ -98,6 +98,11 @@ code {
   padding: 0.3rem 1rem;
   border-top: 1px solid #c0402b;
 }
+@media only screen and (max-width: 780px) {
+  #app-display .edit-div .edit-form .edit-button-container {
+    padding: 0.3rem 0;
+  }
+}
 #app-display .edit-div .edit-form .edit-button-container #edit-delete {
   display: inline;
   color: whitesmoke;
@@ -112,10 +117,10 @@ code {
 }
 #app-display .edit-div .edit-form .edit-button-container #edit-time {
   margin: auto;
-  font-size: 15px;
+  font-size: 12px;
 }
 #app-display .edit-div .edit-form .edit-button-container #edit-time span {
-  font-size: 13px;
+  font-size: 11px;
 }
 #app-display .edit-div .edit-form .edit-button-container #edit-close {
   display: inline;
@@ -137,6 +142,11 @@ code {
   width: 90vw;
   margin: auto;
   gap: 1rem;
+}
+@media only screen and (max-width: 780px) {
+  #app-display .display-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }
 #app-display .display-container .display-card {
   border: 1px solid #c0402b;
@@ -179,6 +189,11 @@ code {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+@media only screen and (max-width: 780px) {
+  #app-display .display-container .display-card .display-input#item-p {
+    -webkit-line-clamp: 6;
+  }
 }
 #app-display .space {
   min-height: 80vh;
@@ -246,11 +261,11 @@ code {
   z-index: 98;
 }
 #app-header .main-logo svg {
-  min-width: 60px;
-  height: 60px;
+  min-width: calc(50px + 1vmin);
+  height: calc(50px + 1vmin);
 }
 #app-header .keep-h {
-  font-size: large;
+  font-size: calc(20px + 1vmin);
 }
 #app-header .built-with {
   display: flex;
@@ -266,12 +281,12 @@ code {
   }
 }
 #app-header .built-with .built-with-logo svg {
-  width: 55px;
-  height: 55px;
+  width: calc(45px + 1vmin);
+  height: calc(45px + 1vmin);
 }
 #app-header .built-with .built-with-logo:nth-child(even) svg {
-  width: 40px;
-  height: 40px;
+  width: calc(30px + 1vmin);
+  height: calc(30px + 1vmin);
 }
 @media only screen and (max-width: 780px) {
   #app-header .built-with .built-with-logo:nth-child(even) svg {

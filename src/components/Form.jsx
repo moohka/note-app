@@ -30,7 +30,7 @@ function Form(props) {
       time: Date.now(),
     })
       .then(() => {
-        window.location.reload(false); //bookmark
+        props.forceRefresh();
       })
       .catch((error) => {
         console.log(error);

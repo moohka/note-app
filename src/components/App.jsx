@@ -1,21 +1,16 @@
-import { createContext, useState } from "react";
+import { useReducer } from "react";
 import Header from "./Header";
 import Form from "./Form";
 import Display from "./Display";
 
-export const AppContext = createContext();
-
 function App() {
-  const [refresh, setRefresh] = useState(true);
+  const [refresh, forceRefresh] = useReducer((x) => x + 1, 0);
 
   return (
     <div className="app">
       <Header />
-
-      <AppContext.Provider value={[refresh, setRefresh]}>
-        <Form refresh={refresh} setRefresh={setRefresh} />
-        <Display refresh={refresh} setRefresh={setRefresh} />
-      </AppContext.Provider>
+      <Form refresh={refresh} forceRefresh={forceRefresh} />
+      <Display refresh={refresh} forceRefresh={forceRefresh} />
     </div>
   );
 }
