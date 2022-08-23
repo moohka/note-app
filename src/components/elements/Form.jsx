@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { notesCollectionRef } from "../firebase-config";
+import { notesCollectionRef } from "../../firebase-config";
 import { addDoc } from "firebase/firestore";
 
-function Form(props) {
+const Form = (props) => {
   const [focused, setFocused] = useState(false);
 
   const formRef = useRef();
@@ -124,6 +124,6 @@ function Form(props) {
       </div>
     </form>
   );
-}
+};
 
 export default Form;

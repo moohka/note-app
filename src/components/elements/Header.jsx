@@ -1,11 +1,11 @@
-import { ReactComponent as KeepMain } from "../visuals/Keep_main.svg";
+import { ReactComponent as KeepMain } from "../../visuals/Keep_main.svg";
 
-import { ReactComponent as React } from "../visuals/React.svg";
-import { ReactComponent as Firebase } from "../visuals/Firebase.svg";
-import { ReactComponent as Keep } from "../visuals/Keep.svg";
-import { ReactComponent as Plus } from "../visuals/plus.svg";
+import { ReactComponent as React } from "../../visuals/React.svg";
+import { ReactComponent as Firebase } from "../../visuals/Firebase.svg";
+import { ReactComponent as Keep } from "../../visuals/Keep.svg";
+import { ReactComponent as Plus } from "../../visuals/plus.svg";
 
-function Header() {
+const Header = () => {
   return (
     <header id="app-header">
       <div className="main-logo">
@@ -32,6 +32,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

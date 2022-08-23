@@ -1,0 +1,21 @@
+@use "./_abstracts" as *;
+
+footer {
+  display: grid;
+  place-items: center;
+  min-height: 3rem;
+  border-top: 1px solid $main-color;
+  font-size: calc(9px + 1vmin);
+
+  & .footer-text {
+    font-size: inherits;
+    color: #abb0b8;
+    opacity: 0.8;
+
+    & .footer-anchor {
+      color: inherit;
+
+      font-size: inherits;
+    }
+  }
+}

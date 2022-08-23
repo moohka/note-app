@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { db, notesCollectionRef } from "../firebase-config";
+import { db, notesCollectionRef } from "../../firebase-config";
 import {
   doc,
   query,
@@ -9,7 +9,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-function Display(props) {
+const Display = (props) => {
   //useState
   const [notes, setNotes] = useState([]);
   const [editing, setEditing] = useState(false);
@@ -202,6 +202,6 @@ function Display(props) {
       <div className="space"></div>
     </div>
   );
-}
+};
 
 export default Display;

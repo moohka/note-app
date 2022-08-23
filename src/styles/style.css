@@ -31,6 +31,101 @@ code {
   position: relative;
 }
 
+#app-header {
+  position: -webkit-sticky;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  top: 0;
+  width: 100%;
+  background-color: #282c34;
+  padding: 15px 2vw 10px 7vw;
+  border-bottom: 1px solid #c0402b;
+  z-index: 98;
+}
+#app-header .main-logo svg {
+  min-width: calc(50px + 1vmin);
+  height: calc(50px + 1vmin);
+}
+#app-header .keep-h {
+  font-size: calc(20px + 1vmin);
+}
+#app-header .built-with {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  padding: 0.3rem 0.5rem;
+}
+@media only screen and (max-width: 780px) {
+  #app-header .built-with {
+    padding: 0.2rem 0.3rem;
+  }
+}
+#app-header .built-with .built-with-logo svg {
+  width: calc(45px + 1vmin);
+  height: calc(45px + 1vmin);
+}
+#app-header .built-with .built-with-logo:nth-child(even) svg {
+  width: calc(30px + 1vmin);
+  height: calc(30px + 1vmin);
+}
+@media only screen and (max-width: 780px) {
+  #app-header .built-with .built-with-logo:nth-child(even) svg {
+    display: none;
+  }
+}
+
+#app-form {
+  width: 90vw;
+  max-width: 600px;
+  border: 1px solid #c0402b;
+  border-radius: 10px;
+  padding: 3px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
+  overflow: hidden;
+  margin: 4vh auto;
+  margin-bottom: 6vh;
+  z-index: 99;
+}
+#app-form .input-element {
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  font-size: large;
+  width: 100%;
+  padding: 0.6rem 1rem;
+}
+#app-form .input-element#input-title {
+  display: none;
+  font-weight: 600;
+}
+#app-form .input-element#input-content {
+  font-family: sans-serif;
+  resize: none;
+  overflow: hidden;
+  padding: 0.6rem 1rem 0.3rem 1rem;
+}
+#app-form .button-container {
+  display: none;
+  text-align: right;
+}
+#app-form .button-container .close-button {
+  display: inline;
+  color: whitesmoke;
+  background-color: #282c34;
+  border-radius: 10px;
+  border: none;
+  font-size: medium;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+#app-form .button-container .close-button:hover {
+  background-color: #2e4060;
+}
+
 #app-display {
   /************************************************************/
 }
@@ -196,100 +291,22 @@ code {
   }
 }
 #app-display .space {
-  min-height: 80vh;
+  min-height: 70vh;
 }
 
-#app-form {
-  width: 90vw;
-  max-width: 600px;
-  border: 1px solid #c0402b;
-  border-radius: 10px;
-  padding: 3px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3) 0px 5px 13px;
-  overflow: hidden;
-  margin: 4vh auto;
-  margin-bottom: 6vh;
-  z-index: 99;
+footer {
+  display: grid;
+  place-items: center;
+  min-height: 3rem;
+  border-top: 1px solid #c0402b;
+  font-size: calc(9px + 1vmin);
 }
-#app-form .input-element {
-  background-color: transparent;
-  color: whitesmoke;
-  border: none;
-  outline: none;
-  font-size: large;
-  width: 100%;
-  padding: 0.6rem 1rem;
+footer .footer-text {
+  font-size: inherits;
+  color: #abb0b8;
+  opacity: 0.8;
 }
-#app-form .input-element#input-title {
-  display: none;
-  font-weight: 600;
-}
-#app-form .input-element#input-content {
-  font-family: sans-serif;
-  resize: none;
-  overflow: hidden;
-  padding: 0.6rem 1rem 0.3rem 1rem;
-}
-#app-form .button-container {
-  display: none;
-  text-align: right;
-}
-#app-form .button-container .close-button {
-  display: inline;
-  color: whitesmoke;
-  background-color: #282c34;
-  border-radius: 10px;
-  border: none;
-  font-size: medium;
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-}
-#app-form .button-container .close-button:hover {
-  background-color: #2e4060;
-}
-
-#app-header {
-  position: -webkit-sticky;
-  position: sticky;
-  display: flex;
-  align-items: center;
-  top: 0;
-  width: 100%;
-  background-color: #282c34;
-  padding: 15px 2vw 10px 7vw;
-  border-bottom: 1px solid #c0402b;
-  z-index: 98;
-}
-#app-header .main-logo svg {
-  min-width: calc(50px + 1vmin);
-  height: calc(50px + 1vmin);
-}
-#app-header .keep-h {
-  font-size: calc(20px + 1vmin);
-}
-#app-header .built-with {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  border-radius: 10px;
-  background-color: whitesmoke;
-  padding: 0.3rem 0.5rem;
-}
-@media only screen and (max-width: 780px) {
-  #app-header .built-with {
-    padding: 0.2rem 0.3rem;
-  }
-}
-#app-header .built-with .built-with-logo svg {
-  width: calc(45px + 1vmin);
-  height: calc(45px + 1vmin);
-}
-#app-header .built-with .built-with-logo:nth-child(even) svg {
-  width: calc(30px + 1vmin);
-  height: calc(30px + 1vmin);
-}
-@media only screen and (max-width: 780px) {
-  #app-header .built-with .built-with-logo:nth-child(even) svg {
-    display: none;
-  }
+footer .footer-text .footer-anchor {
+  color: inherit;
+  font-size: inherits;
 }/*# sourceMappingURL=style.css.map */
