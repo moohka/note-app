@@ -42,6 +42,7 @@ code {
   padding: 15px 2vw 10px 7vw;
   border-bottom: 1px solid #c0402b;
   z-index: 98;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 #app-header .main-logo svg {
   min-width: calc(50px + 1vmin);
