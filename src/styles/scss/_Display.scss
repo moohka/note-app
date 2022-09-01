@@ -97,7 +97,7 @@
     & .display-card {
       @include border;
       background-color: $background-color;
-      box-shadow: $box-shadow;
+      box-shadow: $box-shadow-light;
       overflow: hidden;
       padding: 0.7rem 1rem;
       transition: all 0.2s ease;
