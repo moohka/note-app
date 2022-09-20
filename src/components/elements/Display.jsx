@@ -87,13 +87,14 @@ const Display = (props) => {
     });
 
     setTargetElement(e.target);
-
+    document.documentElement.style.setProperty("--scroll-enabler", "hidden");
     setEditing(true);
   }
 
   //close edit popup
   function closeEdit() {
     targetElement.style.visibility = "visible";
+    document.documentElement.style.setProperty("--scroll-enabler", "auto");
     setEditing(false);
   }
 

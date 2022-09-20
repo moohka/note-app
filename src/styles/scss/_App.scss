@@ -18,12 +18,17 @@
   }
 }
 
+:root {
+  --scroll-enabler: auto;
+}
+
 body {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-color;
   color: whitesmoke;
+  overflow: var(--scroll-enabler);
 }
 
 code {

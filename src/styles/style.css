@@ -15,12 +15,17 @@
   border: 3px solid #282c34;
 }
 
+:root {
+  --scroll-enabler: auto;
+}
+
 body {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
   color: whitesmoke;
+  overflow: var(--scroll-enabler);
 }
 
 code {
