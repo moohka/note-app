@@ -1,5 +1,6 @@
-# Getting Started with Create React App
+# Google Keep Clone App
 
+This Project is light clone of note app developed by Google, Keep.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
