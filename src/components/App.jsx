@@ -1,7 +1,6 @@
 import { useReducer } from "react";
-
 import Header from "./elements/Header";
-import Form from "./elements/Form";
+import Input from "./elements/Input";
 import Display from "./elements/Display";
 import Footer from "./elements/Footer";
 
@@ -12,7 +11,7 @@ function App() {
     <div className="app">
       <Header />
 
-      <Form refresh={refresh} forceRefresh={forceRefresh} />
+      <Input refresh={refresh} forceRefresh={forceRefresh} />
       <Display refresh={refresh} forceRefresh={forceRefresh} />
 
       <Footer />

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { notesCollectionRef } from "../../firebase-config";
 import { addDoc } from "firebase/firestore";
 
-const Form = (props) => {
+const Input = (props) => {
   const [focused, setFocused] = useState(false);
 
   const formRef = useRef();
@@ -126,4 +126,4 @@ const Form = (props) => {
   );
 };
 
-export default Form;
+export default Input;
