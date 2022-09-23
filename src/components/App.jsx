@@ -1,18 +1,18 @@
-import { useReducer } from "react";
-import Header from "./elements/Header";
-import Input from "./elements/Input";
-import Display from "./elements/Display";
-import Footer from "./elements/Footer";
+import { NoteProvider } from "./contexts/NoteContext";
+import Header from "./Header";
+import Input from "./Input";
+import Display from "./Display";
+import Footer from "./Footer";
 
 function App() {
-  const [refresh, forceRefresh] = useReducer((x) => x + 1, 0);
-
   return (
     <div className="app">
       <Header />
 
-      <Input refresh={refresh} forceRefresh={forceRefresh} />
-      <Display refresh={refresh} forceRefresh={forceRefresh} />
+      <NoteProvider>
+        <Input />
+        <Display />
+      </NoteProvider>
 
       <Footer />
     </div>

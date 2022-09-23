@@ -133,7 +133,69 @@ code {
 }
 
 #app-display {
+  min-height: 100vh;
   /************************************************************/
+}
+#app-display .display-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto;
+  width: 90vw;
+  margin: auto;
+  gap: 1rem;
+}
+@media only screen and (max-width: 780px) {
+  #app-display .display-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+#app-display .display-container .display-card {
+  border: 1px solid #c0402b;
+  border-radius: 10px;
+  background-color: #282c34;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 5px;
+  overflow: hidden;
+  padding: 0.7rem 1rem;
+  transition: all 0.2s ease;
+  transition-property: transform;
+}
+#app-display .display-container .display-card:hover {
+  transform: translateY(-5px);
+}
+#app-display .display-container .display-card .display-input {
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: medium;
+  pointer-events: none;
+}
+#app-display .display-container .display-card .display-input#item-h {
+  font-weight: 600;
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  margin-bottom: 0.3rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#app-display .display-container .display-card .display-input#item-p {
+  margin: 0 0;
+  text-overflow: ellipsis;
+  width: 100%;
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+@media only screen and (max-width: 780px) {
+  #app-display .display-container .display-card .display-input#item-p {
+    -webkit-line-clamp: 6;
+  }
 }
 #app-display .edit-div {
   position: fixed;
@@ -234,70 +296,6 @@ code {
 }
 #app-display .edit-div .edit-form .edit-button-container #edit-close:hover {
   background-color: #2e4060;
-}
-#app-display .display-container {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: auto;
-  width: 90vw;
-  margin: auto;
-  gap: 1rem;
-}
-@media only screen and (max-width: 780px) {
-  #app-display .display-container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-}
-#app-display .display-container .display-card {
-  border: 1px solid #c0402b;
-  border-radius: 10px;
-  background-color: #282c34;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 5px;
-  overflow: hidden;
-  padding: 0.7rem 1rem;
-  transition: all 0.2s ease;
-  transition-property: transform;
-}
-#app-display .display-container .display-card:hover {
-  transform: translateY(-5px);
-}
-#app-display .display-container .display-card .display-input {
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-size: medium;
-  pointer-events: none;
-}
-#app-display .display-container .display-card .display-input#item-h {
-  font-weight: 600;
-  background-color: transparent;
-  color: whitesmoke;
-  border: none;
-  outline: none;
-  margin-bottom: 0.3rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-#app-display .display-container .display-card .display-input#item-p {
-  margin: 0 0;
-  text-overflow: ellipsis;
-  width: 100%;
-  background-color: transparent;
-  color: whitesmoke;
-  border: none;
-  outline: none;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-}
-@media only screen and (max-width: 780px) {
-  #app-display .display-container .display-card .display-input#item-p {
-    -webkit-line-clamp: 6;
-  }
-}
-#app-display .space {
-  min-height: 70vh;
 }
 
 footer {
