@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { db, notesCollectionRef } from "../../firebase-config";
+import { db, notesCollectionRef } from "../firebase-config";
 import {
   doc,
   query,
