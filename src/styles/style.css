@@ -133,6 +133,7 @@ code {
 }
 
 #app-display {
+  min-height: 100vh;
   /************************************************************/
 }
 #app-display .edit-div {
@@ -295,9 +296,6 @@ code {
   #app-display .display-container .display-card .display-input#item-p {
     -webkit-line-clamp: 6;
   }
-}
-#app-display .space {
-  min-height: 70vh;
 }
 
 footer {

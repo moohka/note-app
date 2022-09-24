@@ -108,6 +108,35 @@ const Display = (props) => {
 
   return (
     <div id="app-display">
+      {/*note display*/}
+      <div className="display-container">
+        {notes.map((note) => {
+          return (
+            <div className="display-placeholder" key={note.id}>
+              <div
+                className="display-card"
+                note-id={note.id}
+                note-title={note.title}
+                note-content={note.content}
+                note-time={note.time}
+                onClick={(e) => {
+                  e.target.style.visibility = "hidden";
+                  openEdit(e);
+                }}
+              >
+                <h2 className="display-input" id="item-h" ref={noteTitleRef}>
+                  {note.title}
+                </h2>
+
+                <p className="display-input" id="item-p" ref={noteContentRef}>
+                  {note.content}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
       {/*edit popup*/}
       {editing ? (
         <div
@@ -169,38 +198,6 @@ const Display = (props) => {
           </form>
         </div>
       ) : null}
-
-      {/*note display*/}
-      <div className="display-container">
-        {notes.map((note) => {
-          return (
-            <div className="display-placeholder" key={note.id}>
-              <div
-                className="display-card"
-                note-id={note.id}
-                note-title={note.title}
-                note-content={note.content}
-                note-time={note.time}
-                onClick={(e) => {
-                  e.target.style.visibility = "hidden";
-                  openEdit(e);
-                }}
-              >
-                <h2 className="display-input" id="item-h" ref={noteTitleRef}>
-                  {note.title}
-                </h2>
-
-                <p className="display-input" id="item-p" ref={noteContentRef}>
-                  {note.content}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/*spare space*/}
-      <div className="space"></div>
     </div>
   );
 };

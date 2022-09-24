@@ -1,6 +1,8 @@
 @use "./_abstracts" as *;
 
 #app-display {
+  min-height: 100vh;
+
   & .edit-div {
     position: fixed;
     z-index: 99;
@@ -140,8 +142,4 @@
       }
     } //end of card
   } //end of container
-
-  & .space {
-    min-height: 70vh;
-  }
 }

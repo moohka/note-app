@@ -11,10 +11,8 @@ function App() {
   return (
     <div className="app">
       <Header />
-
       <Form refresh={refresh} forceRefresh={forceRefresh} />
       <Display refresh={refresh} forceRefresh={forceRefresh} />
-
       <Footer />
     </div>
   );
