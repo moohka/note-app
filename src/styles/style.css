@@ -141,13 +141,13 @@ code {
   width: 90vw;
   margin: auto;
   -moz-columns: 300px;
-       columns: 300px;
+  columns: 300px;
   -moz-column-gap: 1em;
-       column-gap: 1em;
+  column-gap: 1em;
 }
 #app-display .display-container .display-placeholder {
   -moz-column-break-inside: avoid;
-       break-inside: avoid;
+  break-inside: avoid;
   margin-bottom: 1rem;
 }
 #app-display .display-container .display-placeholder .display-card {
@@ -163,12 +163,20 @@ code {
 #app-display .display-container .display-placeholder .display-card:hover {
   transform: translateY(-5px);
 }
-#app-display .display-container .display-placeholder .display-card .display-input {
+#app-display
+  .display-container
+  .display-placeholder
+  .display-card
+  .display-input {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: medium;
   pointer-events: none;
 }
-#app-display .display-container .display-placeholder .display-card .display-input#item-h {
+#app-display
+  .display-container
+  .display-placeholder
+  .display-card
+  .display-input#item-h {
   font-weight: 600;
   background-color: transparent;
   color: whitesmoke;
@@ -179,7 +187,11 @@ code {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#app-display .display-container .display-placeholder .display-card .display-input#item-p {
+#app-display
+  .display-container
+  .display-placeholder
+  .display-card
+  .display-input#item-p {
   text-overflow: ellipsis;
   width: 100%;
   background-color: transparent;
@@ -192,7 +204,11 @@ code {
   -webkit-box-orient: vertical;
 }
 @media only screen and (max-width: 780px) {
-  #app-display .display-container .display-placeholder .display-card .display-input#item-p {
+  #app-display
+    .display-container
+    .display-placeholder
+    .display-card
+    .display-input#item-p {
     -webkit-line-clamp: 7;
   }
 }
@@ -219,7 +235,7 @@ code {
   flex-flow: column;
   transform: translate(-50%, -50%) scale(0);
   -webkit-animation: pop 0.2s ease forwards;
-          animation: pop 0.2s ease forwards;
+  animation: pop 0.2s ease forwards;
 }
 @media only screen and (max-width: 780px) {
   #app-display .edit-div .edit-form {
@@ -312,4 +328,4 @@ footer .footer-text {
 footer .footer-text .footer-anchor {
   color: inherit;
   font-size: inherits;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
