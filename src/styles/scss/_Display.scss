@@ -1,70 +1,66 @@
 @use "./_abstracts" as *;
 
 #app-display {
-  min-height: 100vh;
+  min-height: 80vh;
+  padding-bottom: 5vh;
 
   & .display-container {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: auto;
     width: 90vw;
     margin: auto;
-    gap: 1rem;
+    columns: 300px;
+    column-gap: 1em;
 
-    @include mobile {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
+    & .display-placeholder {
+      break-inside: avoid;
+      margin-bottom: 1rem;
 
-    & .display-card {
-      @include border;
-      background-color: $background-color;
-      box-shadow: $box-shadow-light;
-      overflow: hidden;
-      padding: 0.7rem 1rem;
-      transition: all 0.2s ease;
-      transition-property: transform;
+      & .display-card {
+        @include border;
+        box-shadow: $box-shadow-light;
+        background-color: $background-color;
+        overflow: hidden;
+        padding: 0.7rem 1rem;
+        transition: all 0.2s ease;
+        transition-property: transform;
 
-      &:hover {
-        transform: translateY(-5px);
-      }
-
-      & .display-input {
-        font-family: $font-family;
-        font-size: medium;
-        pointer-events: none;
-
-        &#item-h {
-          font-weight: 600;
-          @include text-color;
-          margin-bottom: 0.3rem;
-
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+        &:hover {
+          transform: translateY(-5px);
         }
 
-        &#item-p {
-          margin: 0 0;
-          text-overflow: ellipsis;
-          width: 100%;
-          @include text-color;
-          overflow: hidden;
+        & .display-input {
+          font-family: $font-family;
+          font-size: medium;
+          pointer-events: none;
 
-          display: -webkit-box;
-          -webkit-line-clamp: 6;
-          -webkit-box-orient: vertical;
+          &#item-h {
+            font-weight: 600;
+            @include text-color;
+            margin-bottom: 0.3rem;
 
-          @include mobile {
-            -webkit-line-clamp: 6;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
-        }
+
+          &#item-p {
+            text-overflow: ellipsis;
+            width: 100%;
+            @include text-color;
+            overflow: hidden;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 10;
+            -webkit-box-orient: vertical;
+
+            @include mobile {
+              -webkit-line-clamp: 7;
+            }
+          }
+        } //end of display-input
       }
     } //end of card
   } //end of container
-
-  /************************************************************/
-
+  /****************************************************************/
   //NoteModal
   & .edit-div {
     position: fixed;
