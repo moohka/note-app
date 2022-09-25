@@ -2,15 +2,15 @@ import { ReturnNoteContext } from "../contexts/NoteContext";
 
 const NoteModal = () => {
   const {
-    editing,
-    updateNote,
-    selectedNote,
     editTitleRef,
-    deleteNote,
     editContentRef,
-    titleEnter,
-    targetElement,
+    editing,
     setEditing,
+    titleEnter,
+    selectedNote,
+    targetElement,
+    updateNote,
+    deleteNote,
   } = ReturnNoteContext();
 
   //close edit popup
@@ -19,6 +19,7 @@ const NoteModal = () => {
     document.documentElement.style.setProperty("--scroll-enabler", "auto");
     setEditing(false);
   }
+
   return (
     <>
       {editing ? (

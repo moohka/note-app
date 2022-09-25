@@ -2,12 +2,7 @@ import { ReturnNoteContext } from "../contexts/NoteContext";
 
 const NoteCard = (props) => {
   const thisNote = props.note;
-
-  const { setSelectedNote, openEdit, setTargetElement, setEditing } =
-    ReturnNoteContext();
-
-  //dev
-  console.log(props.note.title);
+  const { openEdit } = ReturnNoteContext();
 
   return (
     <div className="display-placeholder" key={thisNote.id}>

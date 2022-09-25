@@ -3,7 +3,6 @@
 #app-display {
   min-height: 100vh;
 
-  //NoteCard
   & .display-container {
     display: grid;
     justify-content: center;
@@ -53,7 +52,7 @@
           overflow: hidden;
 
           display: -webkit-box;
-          -webkit-line-clamp: 4;
+          -webkit-line-clamp: 6;
           -webkit-box-orient: vertical;
 
           @include mobile {

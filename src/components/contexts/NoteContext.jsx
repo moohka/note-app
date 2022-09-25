@@ -27,13 +27,14 @@ export const NoteProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
   const [editing, setEditing] = useState(false);
   const [focused, setFocused] = useState(false);
+  const [targetElement, setTargetElement] = useState();
   const [selectedNote, setSelectedNote] = useState({
     id: "",
     title: "",
     content: "",
     time: 0,
   });
-  const [targetElement, setTargetElement] = useState();
+
   const editTitleRef = useRef();
   const editContentRef = useRef();
   const formRef = useRef();
@@ -66,9 +67,6 @@ export const NoteProvider = ({ children }) => {
         const data = await getDocs(
           query(notesCollectionRef, orderBy("time", "desc"))
         );
-
-        //dev
-        console.log("testing, get data working");
 
         setNotes(
           data.docs.map((doc) => {
@@ -123,8 +121,6 @@ export const NoteProvider = ({ children }) => {
     let conversion = new Date(parseInt(theTime));
     let timeInString = conversion.toLocaleString("en-us");
 
-    console.log(theTitle);
-
     setSelectedNote({
       id: theId,
       title: theTitle,
@@ -166,35 +162,37 @@ export const NoteProvider = ({ children }) => {
     setFocused(false);
   }
 
-  //textarea auto-grow
-  function autoGrow() {
-    contentRef.current.style.height = "auto";
-    contentRef.current.style.height = contentRef.current.scrollHeight + "px";
-  }
-
   const value = {
+    //CRUD
     addNote,
     notes,
     updateNote,
     deleteNote,
 
-    focused,
-    openEdit,
-    openForm,
-    closeForm,
-    autoGrow,
-    setFocused,
+    //states
     refresh,
     forceRefresh,
+    targetElement,
+    setTargetElement,
+    selectedNote,
+    setSelectedNote,
+    focused,
+    setFocused,
     editing,
     setEditing,
+
+    //refs
+    editTitleRef,
+    editContentRef,
     formRef,
     titleRef,
     buttonRef,
     contentRef,
-    targetElement,
-    setTargetElement,
-    setSelectedNote,
+
+    //functions
+    openEdit,
+    openForm,
+    closeForm,
   };
 
   return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>;

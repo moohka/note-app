@@ -189,7 +189,7 @@ code {
   outline: none;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
 @media only screen and (max-width: 780px) {

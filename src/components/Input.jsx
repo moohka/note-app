@@ -1,16 +1,11 @@
-import { useState, useEffect, useRef } from "react";
 import { ReturnNoteContext } from "./contexts/NoteContext";
 
 const Input = () => {
   const {
-    refresh,
-    addNote,
     focused,
-    setFocused,
     titleRef,
     buttonRef,
     formRef,
-    autoGrow,
     closeForm,
     contentRef,
     openForm,
@@ -22,6 +17,12 @@ const Input = () => {
       e.preventDefault();
       contentRef.current.focus();
     }
+  }
+
+  //textarea auto-grow
+  function autoGrow() {
+    contentRef.current.style.height = "auto";
+    contentRef.current.style.height = contentRef.current.scrollHeight + "px";
   }
 
   return (
