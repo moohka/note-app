@@ -10,6 +10,14 @@
     columns: 300px;
     column-gap: 1em;
 
+    @include tablet {
+      columns: 200px;
+    }
+
+    @include mobile {
+      columns: 150px;
+    }
+
     & .display-placeholder {
       break-inside: avoid;
       margin-bottom: 1rem;
@@ -85,7 +93,7 @@
       transform: translate(-50%, -50%) scale(0);
       animation: pop 0.2s ease forwards;
 
-      @include mobile {
+      @include tablet {
         width: 90vw;
       }
 
@@ -102,7 +110,7 @@
         }
 
         &#edit-content {
-          @include content-textarea;
+          @include edit-textarea;
           flex: 1;
         }
       }

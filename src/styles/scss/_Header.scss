@@ -31,7 +31,7 @@
     background-color: $font-color;
     padding: 0.3rem 0.5rem;
 
-    @include mobile {
+    @include tablet {
       padding: 0.2rem 0.3rem;
     }
 
@@ -46,7 +46,7 @@
           width: $built-size-small;
           height: $built-size-small;
 
-          @include mobile {
+          @include tablet {
             display: none;
           }
         }

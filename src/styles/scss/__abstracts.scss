@@ -20,12 +20,20 @@ $box-shadow-light: rgba(0, 0, 0, 0.5) 0px 1px 5px;
 $border-radius: 10px;
 
 /*mixins*/
-@mixin mobile {
-  @media only screen and (max-width: 780px) {
+//responsive
+@mixin tablet {
+  @media only screen and (max-width: 1024px) {
     @content;
   }
 }
 
+@mixin mobile {
+  @media only screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+//components
 @mixin button {
   display: inline;
   color: $font-color;
@@ -52,7 +60,7 @@ $border-radius: 10px;
   outline: none;
 }
 
-//form
+//form components
 @mixin form-inputs {
   background-color: transparent;
   color: $font-color;
@@ -67,7 +75,7 @@ $border-radius: 10px;
   font-weight: 600;
 }
 
-@mixin content-textarea {
+@mixin edit-textarea {
   font-family: sans-serif;
   resize: none;
 }

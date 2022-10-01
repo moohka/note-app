@@ -20,7 +20,7 @@
     }
 
     &#input-content {
-      @include content-textarea;
+      @include edit-textarea;
       overflow: hidden;
       padding: 0.6rem 1rem 0.3rem 1rem; //slight adjustment
     }

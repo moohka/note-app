@@ -64,7 +64,7 @@ code {
   background-color: whitesmoke;
   padding: 0.3rem 0.5rem;
 }
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 1024px) {
   #app-header .built-with {
     padding: 0.2rem 0.3rem;
   }
@@ -77,7 +77,7 @@ code {
   width: calc(30px + 1vmin);
   height: calc(30px + 1vmin);
 }
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 1024px) {
   #app-header .built-with .built-with-logo:nth-child(even) svg {
     display: none;
   }
@@ -145,6 +145,18 @@ code {
   -moz-column-gap: 1em;
        column-gap: 1em;
 }
+@media only screen and (max-width: 1024px) {
+  #app-display .display-container {
+    -moz-columns: 200px;
+         columns: 200px;
+  }
+}
+@media only screen and (max-width: 640px) {
+  #app-display .display-container {
+    -moz-columns: 150px;
+         columns: 150px;
+  }
+}
 #app-display .display-container .display-placeholder {
   -moz-column-break-inside: avoid;
        break-inside: avoid;
@@ -191,7 +203,7 @@ code {
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
 }
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 640px) {
   #app-display .display-container .display-placeholder .display-card .display-input#item-p {
     -webkit-line-clamp: 7;
   }
@@ -221,7 +233,7 @@ code {
   -webkit-animation: pop 0.2s ease forwards;
           animation: pop 0.2s ease forwards;
 }
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 1024px) {
   #app-display .edit-div .edit-form {
     width: 90vw;
   }
@@ -260,7 +272,7 @@ code {
   padding: 0.3rem 1rem;
   border-top: 1px solid #c0402b;
 }
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 640px) {
   #app-display .edit-div .edit-form .edit-button-container {
     padding: 0.3rem 0;
   }
