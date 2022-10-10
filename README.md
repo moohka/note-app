@@ -5,8 +5,8 @@ All the data are stored in Firebase.
 
 !(Link to the open note)[https://notefield.netlify.app]
 
-##Features
-*add a note
-*read a note
-*edit a note
-*delete a note
+## Features
+* add a note
+* read a note
+* edit a note
+* delete a note
