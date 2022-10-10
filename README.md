@@ -7,6 +7,6 @@ All the data are stored in Firebase.
 
 ## Features
 * add a note
-* read a note
+* read notes
 * edit a note
 * delete a note
