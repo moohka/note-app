@@ -1,8 +1,8 @@
-import { ReactComponent as KeepMain } from "../visuals/Keep_main.svg";
-import { ReactComponent as React } from "../visuals/React.svg";
-import { ReactComponent as Firebase } from "../visuals/Firebase.svg";
-import { ReactComponent as Keep } from "../visuals/Keep.svg";
-import { ReactComponent as Plus } from "../visuals/plus.svg";
+import { ReactComponent as KeepMain } from "../assets/svgs/Keep_main.svg";
+import { ReactComponent as React } from "../assets/svgs/React.svg";
+import { ReactComponent as Firebase } from "../assets/svgs/Firebase.svg";
+import { ReactComponent as Keep } from "../assets/svgs/Keep.svg";
+import { ReactComponent as Plus } from "../assets/svgs/plus.svg";
 
 const Header = () => {
   return (

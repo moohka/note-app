@@ -1,4 +1,4 @@
-import { NoteProvider } from "./contexts/NoteContext";
+import { NoteProvider } from "../contexts/NoteContext";
 import Header from "./Header";
 import Input from "./Input";
 import Display from "./Display";

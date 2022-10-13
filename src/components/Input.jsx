@@ -1,4 +1,4 @@
-import { ReturnNoteContext } from "./contexts/NoteContext";
+import { ReturnNoteContext } from "../contexts/NoteContext";
 
 const Input = () => {
   const {

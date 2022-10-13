@@ -6,7 +6,7 @@ import {
   useContext,
   createContext,
 } from "react";
-import { db, notesCollectionRef } from "../../firebase-config";
+import { db, notesCollectionRef } from "../firebase-config";
 import {
   doc,
   query,

@@ -1,4 +1,4 @@
-import { ReturnNoteContext } from "./contexts/NoteContext";
+import { ReturnNoteContext } from "../contexts/NoteContext";
 import NoteCard from "./display-elements/NoteCard";
 import NoteModal from "./display-elements/NoteModal";
 
