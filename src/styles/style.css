@@ -314,7 +314,7 @@ footer {
   place-items: center;
   min-height: 3rem;
   border-top: 1px solid #c0402b;
-  font-size: 14px;
+  font-size: clamp(12px, 7px + 1vmin, 14px);
 }
 footer .footer-text {
   font-size: inherits;
