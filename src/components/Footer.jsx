@@ -13,7 +13,7 @@ const Footer = () => {
         </a>
         ,&nbsp;cloned by&nbsp;
         <a
-          href="https://moohyunkang.netlify.app"
+          href="https://www.moohyunkang.com"
           className="footer-anchor"
           target="_blank"
           rel="noreferrer"
